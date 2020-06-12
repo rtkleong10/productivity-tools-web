@@ -8,7 +8,7 @@ export const ROUTES = [
 		component: ActivityListPage,
 	},
 	{
-		path: "/days-since/:id",
+		path: "/days-since/:activityId",
 		exact: true,
 		component: ActivityDetailPage,
 	}

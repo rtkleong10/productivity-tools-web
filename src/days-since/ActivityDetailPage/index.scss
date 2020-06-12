@@ -15,23 +15,3 @@
         }
     }
 }
-
-.event-item {
-    display: flex;
-    justify-content: space-between;
-	align-items: center;
-	
-	&:not(:last-child) {
-		padding-bottom: 15px;
-		border-bottom: 1px solid $light-grey;
-		margin-bottom: 15px;
-	}
-
-	@include media-breakpoint-down('sm') {
-		display: block;
-
-		> :first-child {
-			margin-bottom: 10px;
-		}
-    }
-}

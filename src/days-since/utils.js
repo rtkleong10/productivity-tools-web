@@ -1,4 +1,4 @@
-export const EVENTS = {
+export const EVENT_TYPES = {
 	COMPLETED: 1,
 	SKIPPED: 2,
 }

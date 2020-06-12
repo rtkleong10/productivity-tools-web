@@ -1,60 +1,25 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
-import ActivityElement from '../ActivityElement';
-import ActivityForm from '../ActivityForm';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
-import './index.scss';
 import Breadcrumbs from '../../components/Breadcrumbs';
-
-const activities = [
-	{
-		id: "1",
-		title: "Water the Plants",
-		frequency: 7,
-		daysSince: 8,
-		color: "#25BA9C",
-		todaysEvent: null,
-	},
-	{
-		id: "2",
-		title: "Water the Plants",
-		frequency: 7,
-		daysSince: 2,
-		color: "#4597E3",
-		todaysEvent: null,
-	},
-	{
-		id: "3",
-		title: "Take Out the Trash",
-		frequency: 7,
-		daysSince: 1,
-		color: "#D94150",
-		todaysEvent: 1,
-	},
-	{
-		id: "4",
-		title: "Do the Laundry",
-		frequency: 7,
-		daysSince: 2,
-		color: "#F5D624",
-		todaysEvent: 2,
-	},
-	{
-		id: "5",
-		title: "Do the Laundry",
-		frequency: 7,
-		daysSince: 4,
-		color: "#9D5BFF",
-		todaysEvent: 1,
-	},
-];
+import Loader from '../../components/Loader';
+import ActivityElement from '../ActivityElement';
+import ActivityForm from '../ActivityForm';
+import { listActivities, selectActivities, selectActivitiesLoading, selectActivitiesError } from '../../redux/ducks/activities';
+import './index.scss';
 
 export class ActivityListPage extends Component {
 	state = {
 		createModalIsVisible: false,
 	};
+
+	componentDidMount() {
+		this.props.listActivities();
+	}
 
 	handleVisibilityChange = isVisible => {
 		this.setState({
@@ -72,14 +37,24 @@ export class ActivityListPage extends Component {
 		this.setState({
 			createModalIsVisible: false,
 		});
-
-		console.log(activity);
 	}
 
 	render() {
 		const {
+			activities,
+			activitiesLoading,
+			activitiesError,
+		} = this.props;
+
+		const {
 			createModalIsVisible,
 		} = this.state;
+
+		if (!activities && activitiesLoading)
+			return <Loader />;
+
+		if (activitiesError)
+			return <Redirect to="/" />;
 
 		return (
 			<div className="container">
@@ -101,9 +76,9 @@ export class ActivityListPage extends Component {
 									id,
 									title,
 									frequency,
-									daysSince,
+									days_since,
 									color,
-									todaysEvent
+									todays_event
 								} = activity;
 
 								return (
@@ -112,9 +87,9 @@ export class ActivityListPage extends Component {
 										id={id}
 										title={title}
 										frequency={frequency}
-										daysSince={daysSince}
+										daysSince={days_since}
 										color={color}
-										todaysEvent={todaysEvent}
+										todaysEvent={todays_event}
 									/>
 								)
 							})
@@ -129,4 +104,14 @@ export class ActivityListPage extends Component {
 	}
 }
 
-export default ActivityListPage;
+const mapStateToProps = state => ({
+	activities: selectActivities(state),
+	activitiesLoading: selectActivitiesLoading(state),
+	activitiesError: selectActivitiesError(state),
+});
+
+const dispatchers = {
+	listActivities,
+};
+
+export default connect(mapStateToProps, dispatchers)(ActivityListPage);

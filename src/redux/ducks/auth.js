@@ -2,7 +2,7 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 import { AUTH_URL } from '../../utils/constants';
-import { getActionTypes, actionCreator } from './helpers';
+import { getActionTypes, createAction } from './helpers';
 
 // ACTION TYPES
 export const LOGIN_ACTIONS = getActionTypes('LOGIN');
@@ -27,19 +27,7 @@ export default function (state = initialState, action) {
 				loginLoading: true,
 				loginError: null,
 			}
-			
-		case LOGIN_ACTIONS.FAILURE:
-			Cookies.remove("accessToken");
-			Cookies.remove("refreshToken");
-			
-			return {
-				...state,
-				accessToken: null,
-				refreshToken: null,
-				loginLoading: false,
-				loginError: action.payload,
-			}
-			
+
 		case LOGIN_ACTIONS.SUCCESS:
 			const {
 				access: accessToken,
@@ -54,6 +42,18 @@ export default function (state = initialState, action) {
 				accessToken: accessToken,
 				refreshToken: refreshToken,
 				loginLoading: false,
+			}
+
+		case LOGIN_ACTIONS.FAILURE:
+			Cookies.remove("accessToken");
+			Cookies.remove("refreshToken");
+
+			return {
+				...state,
+				accessToken: null,
+				refreshToken: null,
+				loginLoading: false,
+				loginError: action.payload,
 			}
 
 		case LOGOUT:
@@ -74,7 +74,7 @@ export default function (state = initialState, action) {
 
 // OPERATIONS
 export const authLogin = ({ username, password }) => dispatch => {
-	dispatch(actionCreator(LOGIN_ACTIONS.REQUEST));
+	dispatch(createAction(LOGIN_ACTIONS.REQUEST));
 
 	axios.post(
 		`${AUTH_URL}/jwt/create`,
@@ -84,15 +84,15 @@ export const authLogin = ({ username, password }) => dispatch => {
 		}
 	)
 		.then(res => {
-			dispatch(actionCreator(LOGIN_ACTIONS.SUCCESS, res.data));
+			dispatch(createAction(LOGIN_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
-			dispatch(actionCreator(LOGIN_ACTIONS.FAILURE, err));
+			dispatch(createAction(LOGIN_ACTIONS.FAILURE, err));
 		});
 };
 
 export const refreshTokenLogin = () => (dispatch, getState) => {
-	dispatch(actionCreator(LOGIN_ACTIONS.REQUEST));
+	dispatch(createAction(LOGIN_ACTIONS.REQUEST));
 	const refreshToken = getState().authReducer.refreshToken;
 
 	axios.post(
@@ -102,18 +102,18 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
 		}
 	)
 		.then(res => {
-			dispatch(actionCreator(LOGIN_ACTIONS.SUCCESS, {
+			dispatch(createAction(LOGIN_ACTIONS.SUCCESS, {
 				...res.data,
 				refresh: refreshToken,
 			}));
 		})
 		.catch(err => {
-			dispatch(actionCreator(LOGIN_ACTIONS.FAILURE, err));
+			dispatch(createAction(LOGIN_ACTIONS.FAILURE, err));
 		});
 };
 
 export const signup = ({ email, username, password }) => dispatch => {
-	dispatch(actionCreator(SIGNUP_ACTIONS.REQUEST));
+	dispatch(createAction(SIGNUP_ACTIONS.REQUEST));
 
 	axios.post(
 		`${AUTH_URL}/users`,
@@ -124,16 +124,16 @@ export const signup = ({ email, username, password }) => dispatch => {
 		}
 	)
 		.then(res => {
-			dispatch(actionCreator(SIGNUP_ACTIONS.SUCCESS, res.data));
+			dispatch(createAction(SIGNUP_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
 			// displayError("Unable to sign up")(dispatch);
-			dispatch(actionCreator(SIGNUP_ACTIONS.FAILURE, err));
+			dispatch(createAction(SIGNUP_ACTIONS.FAILURE, err));
 		});
 };
 
 export const logout = () => dispatch => {
-	dispatch(actionCreator(LOGOUT));
+	dispatch(createAction(LOGOUT));
 };
 
 // SELECTORS

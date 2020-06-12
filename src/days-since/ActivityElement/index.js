@@ -6,7 +6,7 @@ import { faCheck, faForward } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 import ProgressCircle from '../ProgressCircle';
-import { EVENTS, getFrequencyDisplay } from '../utils';
+import { EVENT_TYPES, getFrequencyDisplay } from '../utils';
 import './index.scss';
 
 function getDaysSinceDisplay(days) {
@@ -43,11 +43,11 @@ export default function ActivityElement(props) {
 
 	if (todaysEvent) {
 		switch (todaysEvent) {
-			case EVENTS.COMPLETED:
+			case EVENT_TYPES.COMPLETED:
 				eventDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</p>
 				break;
 			
-			case EVENTS.SKIPPED:
+			case EVENT_TYPES.SKIPPED:
 				eventDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</p>;
 				break;
 			
