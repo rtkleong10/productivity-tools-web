@@ -1,0 +1,41 @@
+.form-group {
+	margin-bottom: 20px;
+
+	> * {
+		display: block;
+	}
+
+	label {
+		color: $dark-grey;
+		font: $h6-font;
+		font-size: 14px;
+		margin-bottom: 5px;
+	}
+
+	input, textarea, select {
+		color: $dark-grey;
+		outline: none;
+		display: block;
+		width: 100%;
+		border: 1px solid $light-grey;
+		border-radius: 5px;
+		box-sizing: border-box;
+		padding: 10px;
+		font: $p-font;
+
+		&:focus {
+			border-color: $blue;
+		}
+
+		@include placeholder {
+			color: $light-grey;
+			font-weight: normal;
+		}
+	}
+	
+	textarea {
+		resize: vertical;
+		min-height: 80px;
+		height: 120px;
+	}
+}

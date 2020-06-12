@@ -1,0 +1,10 @@
+@import "../../styles/1-helpers/all";
+
+.grid.activity-list > * {
+    grid-column: span 6;
+
+    @include media-breakpoint-down('lg') {
+        margin-bottom: 40px;
+        grid-column: span 12;
+    }
+}

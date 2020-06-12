@@ -1,0 +1,66 @@
+@import '../../styles/1-helpers/all';
+
+.btn {
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	outline: none;
+	@include ease-transition;
+
+	border: none;
+	border-radius: 5px;	
+	padding: 10px 20px;
+	box-shadow: $raised-shadow;
+	
+	font: 500 16px $futura;
+	text-align: center;
+
+	background-color: $dark-grey;
+	color: $white;
+
+	// States
+	&:hover, &:focus {
+		opacity: 0.7;
+	}
+
+	// Rounded
+	&.btn-rounded {
+		border-radius: 9999px;
+	}
+
+	// Icon
+	&.btn-icon {
+		text-align: left;
+	}
+
+	// Colors
+	&.btn-medium-grey {
+		background-color: $medium-grey;
+	}
+
+	&.btn-faded-grey {
+		background-color: $faded-grey;
+		color: $dark-grey;
+	}
+
+	&.btn-white {
+		background-color: $white;
+		color: $dark-grey;
+	}
+
+	&.btn-blue {
+		background-color: $blue;
+	}
+
+	&.btn-red {
+		background-color: $red;
+	}
+
+	&.btn-green {
+		background-color: $green;
+	}
+
+	&.btn-purple {
+		background-color: $purple;
+	}
+}
