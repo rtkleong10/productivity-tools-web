@@ -34,7 +34,7 @@ export default function ActivityElement(props) {
 		todaysEvent,
 	} = props;
 
-	var eventsDisplay = (
+	var eventDisplay = (
 		<div>
 			<Button icon={faCheck} className="mr-10"></Button>
 			<Button color="white" icon={faForward}></Button>
@@ -44,11 +44,11 @@ export default function ActivityElement(props) {
 	if (todaysEvent) {
 		switch (todaysEvent) {
 			case EVENTS.COMPLETED:
-				eventsDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</p>
+				eventDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</p>
 				break;
 			
 			case EVENTS.SKIPPED:
-				eventsDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</p>;
+				eventDisplay = <p className="todays-event"><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</p>;
 				break;
 			
 			default:
@@ -61,12 +61,12 @@ export default function ActivityElement(props) {
 			<ProgressCircle daysSince={daysSince} frequency={frequency} color={color} />
 			<div>
 				<div className="mb-10">
-					<h3 className="activity-title">
+					<h3 className="activity-title mb-0">
 						<Link to={`/days-since/${id}`}>{title}</Link>
 					</h3>
 					<p>{getFrequencyDisplay(frequency)} • {`Last done ${getDaysSinceDisplay(daysSince)}`}</p>
 				</div>
-				{eventsDisplay}
+				{eventDisplay}
 			</div>
 		</div>
 	)

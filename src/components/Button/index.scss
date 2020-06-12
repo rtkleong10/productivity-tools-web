@@ -12,7 +12,7 @@
 	padding: 10px 20px;
 	box-shadow: $raised-shadow;
 	
-	font: 500 16px $futura;
+	font: 500 14px $futura;
 	text-align: center;
 
 	background-color: $dark-grey;
@@ -62,5 +62,15 @@
 
 	&.btn-purple {
 		background-color: $purple;
+	}
+}
+
+.btn-group {
+	display: flex;
+	flex-direction: column;
+	width: fit-content;
+
+	> .btn {
+		margin-bottom: 10px;
 	}
 }

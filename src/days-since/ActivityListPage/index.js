@@ -6,6 +6,7 @@ import ActivityForm from '../ActivityForm';
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
 import './index.scss';
+import Breadcrumbs from '../../components/Breadcrumbs';
 
 const activities = [
 	{
@@ -13,7 +14,7 @@ const activities = [
 		title: "Water the Plants",
 		frequency: 7,
 		daysSince: 8,
-		color: "#2AD4B2",
+		color: "#25BA9C",
 		todaysEvent: null,
 	},
 	{
@@ -21,25 +22,33 @@ const activities = [
 		title: "Water the Plants",
 		frequency: 7,
 		daysSince: 2,
-		color: "#4AA1F2",
+		color: "#4597E3",
 		todaysEvent: null,
 	},
 	{
 		id: "3",
 		title: "Take Out the Trash",
 		frequency: 7,
-		daysSince: 0,
-		color: "#F24556",
+		daysSince: 1,
+		color: "#D94150",
 		todaysEvent: 1,
 	},
 	{
 		id: "4",
 		title: "Do the Laundry",
 		frequency: 7,
-		daysSince: 1000,
-		color: "#F24556",
+		daysSince: 2,
+		color: "#F5D624",
 		todaysEvent: 2,
-	}
+	},
+	{
+		id: "5",
+		title: "Do the Laundry",
+		frequency: 7,
+		daysSince: 4,
+		color: "#9D5BFF",
+		todaysEvent: 1,
+	},
 ];
 
 export class ActivityListPage extends Component {
@@ -74,10 +83,15 @@ export class ActivityListPage extends Component {
 
 		return (
 			<div className="container">
-				<h1 className="mb-10">Days Since</h1>
+				<Breadcrumbs
+					breadcrumbs={[
+						{ title: "Home", to: "/" },
+						{ title: "Days Since" },
+					]} />
+				<h1>Days Since</h1>
 				<div>
-					<h2 className="mb-10">Activities</h2>
-					<div className="mb-30">
+					<h2>Activities</h2>
+					<div className="mb-20">
 						<Button icon={faPlus} color="blue" onClick={this.openCreateModal}>Create Activity</Button>
 					</div>
 					<div className="grid activity-list">

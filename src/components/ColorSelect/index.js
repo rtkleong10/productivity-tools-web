@@ -3,7 +3,7 @@ import Select from '../Select';
 
 const colourOptions = [
 	{
-		value: '#F24556',
+		value: '#D94150',
 		label: 'Red',
 	},
 	{
@@ -11,11 +11,11 @@ const colourOptions = [
 		label: 'Yellow',
 	},
 	{
-		value: '#2AD4B2',
+		value: '#25BA9C',
 		label: 'Green',
 	},
 	{
-		value: '#4AA1F2',
+		value: '#4597E3',
 		label: 'Blue',
 	},
 	{
