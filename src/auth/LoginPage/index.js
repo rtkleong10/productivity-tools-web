@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Helmet } from "react-helmet";
 
 import LoginForm from '../LoginForm';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,9 @@ export function LoginPage(props) {
 
 	return (
 		<div className="container">
+			<Helmet>
+				<title>Log In</title>
+			</Helmet>
 			<h1>Log In</h1>
 			<div className="box my-20">
 				<LoginForm onSubmit={authLogin} />

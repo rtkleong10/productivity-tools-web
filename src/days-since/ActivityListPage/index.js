@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from "react-helmet";
 
 import Button from '../../components/Button';
 import Modal from '../../components/Modal';
@@ -58,6 +59,9 @@ export class ActivityListPage extends Component {
 
 		return (
 			<div className="container">
+				<Helmet>
+					<title>Days Since</title>
+				</Helmet>
 				<Breadcrumbs
 					breadcrumbs={[
 						{ title: "Home", to: "/" },

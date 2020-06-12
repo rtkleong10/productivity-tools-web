@@ -13,6 +13,11 @@ export const GUEST_AUTH_ROUTES = [
 		exact: true,
 		component: SignupPage,
 	},
+	{
+		path: "/logout",
+		exact: true,
+		component: LogoutPage,
+	},
 ];
 
 export const USER_AUTH_ROUTES = [

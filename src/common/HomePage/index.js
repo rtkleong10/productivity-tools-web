@@ -1,5 +1,6 @@
 import React from 'react';
 import { faClock, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { Helmet } from "react-helmet";
 
 import Button from '../../components/Button';
 import Breadcrumbs from '../../components/Breadcrumbs';
@@ -7,6 +8,9 @@ import Breadcrumbs from '../../components/Breadcrumbs';
 export default function HomePage() {
 	return (
 		<div className="container">
+			<Helmet>
+				<title>Productivity Tools</title>
+			</Helmet>
 			<Breadcrumbs
 				breadcrumbs={[
 					{ title: "Home" },
