@@ -21,10 +21,12 @@ export default function SignupPage() {
 	}
 
 	return (
-		<>
+		<div className="container">
 			<h1>Sign Up</h1>
-			<SignupForm onSubmit={handleSubmit} />
+			<div className="box my-20">
+				<SignupForm onSubmit={handleSubmit} />
+			</div>
 			<p>Already have an account? <Link to="/login">Log in here</Link></p>
-		</>
+		</div>
 	)
 }

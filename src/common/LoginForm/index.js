@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 
@@ -45,7 +46,7 @@ export default class LoginForm extends Component {
 					<label htmlFor="password">Password</label>
 					<input name="password" id="password" type="password" onChange={this.handleChange} value={password} />
 				</div>
-				<Button>Submit</Button>
+				<Button icon={faPaperPlane}>Submit</Button>
 			</form>
 		);
 	}

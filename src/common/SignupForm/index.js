@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 
@@ -50,23 +51,23 @@ export default class SignupForm extends Component {
 
 		return (
 			<form onSubmit={this.handleSubmit}>
-				<label>
-					Email
+				<div className="form-group">
+					<label>Email</label>
 					<input name="email" type="email" onChange={this.handleChange} value={email} />
-				</label>
-				<label>
-					Username
+				</div>
+				<div className="form-group">
+					<label>Username</label>
 					<input name="username" type="text" onChange={this.handleChange} value={username} />
-				</label>
-				<label>
-					Password
+				</div>
+				<div className="form-group">
+					<label>Password</label>
 					<input name="password" type="password" onChange={this.handleChange} value={password} />
-				</label>
-				<label>
-					Confirm Password
+				</div>
+				<div className="form-group">
+					<label>Confirm Password</label>
 					<input name="password2" type="password" onChange={this.handleChange} value={password2} />
-				</label>
-				<Button>Submit</Button>
+				</div>
+				<Button icon={faPaperPlane}>Submit</Button>
 			</form>
 		);
 	}
