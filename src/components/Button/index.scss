@@ -73,4 +73,13 @@
 	> .btn {
 		margin-bottom: 10px;
 	}
+
+	&.btn-group-horizontal {
+		flex-direction: row;
+
+		> .btn {
+			margin-bottom: 0;
+			margin-right: 10px;
+		}
+	}
 }

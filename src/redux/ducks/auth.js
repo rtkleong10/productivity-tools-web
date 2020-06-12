@@ -1,112 +1,142 @@
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
-import { createApiReducer, createApiAction, STATUSES, METHODS } from './apiHelper';
-import { API_URL } from '../../utils/constants';
-import { displayError } from './errors';
-import { getTokenConfig } from './authHelper';
+import { AUTH_URL } from '../../utils/constants';
+import { getActionTypes, actionCreator } from './helpers';
 
-const ENTITY_NAME = 'learningMaterials';
+// ACTION TYPES
+export const LOGIN_ACTIONS = getActionTypes('LOGIN');
+export const SIGNUP_ACTIONS = getActionTypes('SIGNUP');
+export const LOGOUT = 'LOGOUT';
 
 // REDUCER
-const learningMaterialsReducer = createApiReducer(ENTITY_NAME);
-export default learningMaterialsReducer;
+const initialState = {
+	accessToken: Cookies.get("accessToken"),
+	refreshToken: Cookies.get("refreshToken"),
+	loginLoading: false,
+	loginError: null,
+	signupLoading: false,
+	signupError: null,
+};
+
+export default function (state = initialState, action) {
+	switch (action.type) {
+		case LOGIN_ACTIONS.REQUEST:
+			return {
+				...state,
+				loginLoading: true,
+				loginError: null,
+			}
+			
+		case LOGIN_ACTIONS.FAILURE:
+			Cookies.remove("accessToken");
+			Cookies.remove("refreshToken");
+			
+			return {
+				...state,
+				accessToken: null,
+				refreshToken: null,
+				loginLoading: false,
+				loginError: action.payload,
+			}
+			
+		case LOGIN_ACTIONS.SUCCESS:
+			const {
+				access: accessToken,
+				refresh: refreshToken,
+			} = action.payload;
+
+			Cookies.set("accessToken", accessToken);
+			Cookies.set("refreshToken", refreshToken);
+
+			return {
+				...state,
+				accessToken: accessToken,
+				refreshToken: refreshToken,
+				loginLoading: false,
+			}
+
+		case LOGOUT:
+			Cookies.remove("accessToken");
+			Cookies.remove("refreshToken");
+
+			return {
+				...state,
+				accessToken: null,
+				refreshToken: null,
+			}
+
+		default:
+			return state;
+	}
+
+}
 
 // OPERATIONS
-export const createLearningMaterial = (levelId, learningMaterial) => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
+export const authLogin = ({ username, password }) => dispatch => {
+	dispatch(actionCreator(LOGIN_ACTIONS.REQUEST));
 
-    axios
-        .post(
-            `${API_URL}/gameMaps/${levelId}/${ENTITY_NAME}/create/`,
-            learningMaterial,
-            getTokenConfig(getState),
-        )
-        .then(res => {
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
-        })
-        .catch(err => {
-            displayError("Unable to create learning material")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE));
-        });
-    ;
+	axios.post(
+		`${AUTH_URL}/jwt/create`,
+		{
+			username,
+			password,
+		}
+	)
+		.then(res => {
+			dispatch(actionCreator(LOGIN_ACTIONS.SUCCESS, res.data));
+		})
+		.catch(err => {
+			dispatch(actionCreator(LOGIN_ACTIONS.FAILURE, err));
+		});
 };
 
-export const retrieveLearningMaterial = (levelId, learningMaterialId) => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
+export const refreshTokenLogin = () => (dispatch, getState) => {
+	dispatch(actionCreator(LOGIN_ACTIONS.REQUEST));
+	const refreshToken = getState().authReducer.refreshToken;
 
-    axios
-        .get(
-            `${API_URL}/gameMaps/${levelId}/${ENTITY_NAME}/${learningMaterialId}/`,
-            getTokenConfig(getState),
-        )
-        .then(res => {
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
-        })
-        .catch(err => {
-            displayError("Unable to retrieve learning material")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE));
-        });
-    ;
+	axios.post(
+		`${AUTH_URL}/jwt/refresh`,
+		{
+			refresh: refreshToken,
+		}
+	)
+		.then(res => {
+			dispatch(actionCreator(LOGIN_ACTIONS.SUCCESS, {
+				...res.data,
+				refresh: refreshToken,
+			}));
+		})
+		.catch(err => {
+			dispatch(actionCreator(LOGIN_ACTIONS.FAILURE, err));
+		});
 };
 
-export const updateLearningMaterial = (levelId, learningMaterial) => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
+export const signup = ({ email, username, password }) => dispatch => {
+	dispatch(actionCreator(SIGNUP_ACTIONS.REQUEST));
 
-    axios
-        .patch(
-            `${API_URL}/gameMaps/${levelId}/${ENTITY_NAME}/${learningMaterial.id}/`,
-            learningMaterial,
-            getTokenConfig(getState),
-        )
-        .then(res => {
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
-        })
-        .catch(err => {
-            displayError("Unable to update learning material")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE));
-        });
+	axios.post(
+		`${AUTH_URL}/users`,
+		{
+			email,
+			username,
+			password,
+		}
+	)
+		.then(res => {
+			dispatch(actionCreator(SIGNUP_ACTIONS.SUCCESS, res.data));
+		})
+		.catch(err => {
+			// displayError("Unable to sign up")(dispatch);
+			dispatch(actionCreator(SIGNUP_ACTIONS.FAILURE, err));
+		});
 };
 
-export const deleteLearningMaterial = (levelId, learningMaterialId) => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
-
-    axios
-        .delete(
-            `${API_URL}/gameMaps/${levelId}/${ENTITY_NAME}/${learningMaterialId}/`,
-            getTokenConfig(getState),
-        )
-        .then(res => {
-            if (res.data === true) {
-                dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, learningMaterialId));
-            } else {
-                throw new Error("Unable to delete learning material");
-            }
-        })
-        .catch(err => {
-            displayError("Unable to delete learning material")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE));
-        });
-};
-
-export const listLearningMaterials = (levelId) => (dispatch, getState) => {
-    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
-
-    axios
-        .get(
-            `${API_URL}/gameMaps/${levelId}/${ENTITY_NAME}/`,
-            getTokenConfig(getState),
-        )
-        .then(res => {
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
-        })
-        .catch(err => {
-            displayError("Unable to retrieve learning materials")(dispatch);
-            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST));
-        });
-    ;
+export const logout = () => dispatch => {
+	dispatch(actionCreator(LOGOUT));
 };
 
 // SELECTORS
-export const selectLearningMaterialsLoading = state => state.learningMaterialsReducer.isLoading[METHODS.LIST] === true;
-export const selectLearningMaterialsFailed = state => state.learningMaterialsReducer.isLoading[METHODS.LIST] === false && state.learningMaterialsReducer.hasFailed[METHODS.LIST] === true;
-export const selectLearningMaterials = state => state.learningMaterialsReducer.items;
+export const selectLoginLoading = state => state.authReducer.loginLoading;
+export const selectLoginError = state => state.authReducer.loginError;
+export const selectRefreshToken = state => state.authReducer.refreshToken;

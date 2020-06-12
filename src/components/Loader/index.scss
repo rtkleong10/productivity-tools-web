@@ -1,0 +1,17 @@
+@import '../../styles/1-helpers/all';
+
+.loader {
+    border: 20px solid $faded-grey;
+    border-top-color: $blue;
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    margin-top: 2em;
+}
+
+@keyframes spin {
+    0%		{transform: rotate(0deg);}
+    100%	{transform: rotate(360deg);}
+}

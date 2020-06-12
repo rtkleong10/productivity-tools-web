@@ -1,52 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
-import HomePage from '../HomePage';
-import LoginPage from '../LoginPage';
-import LogoutPage from '../LogoutPage';
-import SignupPage from '../SignupPage';
-import ActivityListPage from '../../days-since/ActivityListPage';
-import ActivityDetailPage from '../../days-since/ActivityDetailPage';
+import AppRouter from '../AppRouter';
+import store from '../../redux/store';
 
-export default function App() {
-	return (
-		<BrowserRouter>
-			<Switch>
-				<Route
-					path="/"
-					exact
-					component={HomePage}
-					/>
-				<Route
-					path="/login"
-					exact
-					component={LoginPage}
-					/>
-				<Route
-					path="/logout"
-					exact
-					component={LogoutPage}
-					/>
-				<Route
-					path="/signup"
-					exact
-					component={SignupPage}
-					/>
-				<Route
-					path="/days-since"
-					exact
-					component={ActivityListPage}
-					/>
-				<Route
-					path="/days-since/:id"
-					exact
-					component={ActivityDetailPage}
-					/>
-				<Redirect
-					from="/"
-					to="/not-found"
-					/>
-			</Switch>
-		</BrowserRouter>
-	)
+/** This component is the entrypoint of the react app */
+function App() {
+    return (
+        <Provider store={store}>
+            <AppRouter />
+        </Provider>
+    );
 }
+
+export default App;

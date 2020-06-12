@@ -1,23 +1,11 @@
 import React from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 
 import SignupForm from '../SignupForm';
-import { authUrl } from '../../utils/constants';
 
 export default function SignupPage() {
 	function handleSubmit({ email, username, password }) {
-		axios.post(
-			`${authUrl}/users`,
-			{
-				email,
-				username,
-				password,
-			}
-		)
-			.then(res => {
-				console.log(res.data);
-			});
+		
 	}
 
 	return (
