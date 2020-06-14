@@ -1,24 +1,25 @@
 import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
+import { getTextWithBrs } from '../../utils/text';
 import './index.scss';
 
 function getClockDisplay(daysLeft, isMobile = false) {
 	if (daysLeft >= 0) {
 		if (daysLeft === 1)
-			return "1 day left";
+			return "1 day\nleft";
 		else if (daysLeft > 99)
-			return ">99 days left";
+			return ">99 days\nleft";
 		else
-			return `${daysLeft} days left`;
+			return `${daysLeft} days\nleft`;
 
 	} else {
 		if (daysLeft === -1)
-			return "1 day late";
+			return "1 day\nlate";
 		else if (daysLeft < -99)
-			return ">99 days late";
+			return ">99 days\nlate";
 		else
-			return `${Math.abs(daysLeft)} days late`;
+			return `${Math.abs(daysLeft)} days\nlate`;
 	}
 }
 
@@ -29,14 +30,14 @@ export default function ProgressCircle(props) {
 	let canvasRef = useRef();
 
 	const {
-		daysSince,
+		days_since,
 		frequency,
 		color,
 	} = props;
 
-	const daysLeft = frequency - daysSince;
+	const daysLeft = frequency - days_since;
 	const clockDisplay = getClockDisplay(daysLeft);
-	const percentage = daysSince / frequency;
+	const percentage = days_since/ frequency;
 
 	useEffect(() => {
 		let canvas = canvasRef.current;
@@ -75,11 +76,11 @@ export default function ProgressCircle(props) {
 
 			draw();
 		}
-	});
+	}, [startTime, color, percentage]);
 
 	const innerCircle = (
 		<div className="inner-circle">
-			<p>{clockDisplay}</p>
+			<p>{getTextWithBrs(clockDisplay)}</p>
 			<p className="mobile-text">{Math.abs(daysLeft) <= 99 ? `${Math.abs(daysLeft)}d` : ">99d"}<br />{`${daysLeft >= 0 ? 'left' : 'late'}`}</p>
 		</div>
 	)
@@ -105,7 +106,7 @@ export default function ProgressCircle(props) {
 }
 
 ProgressCircle.propTypes = {
-	daysSince: PropTypes.number.isRequired,
+	days_since: PropTypes.number.isRequired,
 	frequency: PropTypes.number.isRequired,
 	color: PropTypes.string.isRequired,
 }

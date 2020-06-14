@@ -40,11 +40,25 @@ export default class LoginForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label htmlFor="username">Username</label>
-					<input name="username" id="username" type="text" onChange={this.handleChange} value={username} />
+					<input
+						name="username"
+						id="username"
+						type="text"
+						onChange={this.handleChange}
+						value={username}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="password">Password</label>
-					<input name="password" id="password" type="password" onChange={this.handleChange} value={password} />
+					<input
+						name="password"
+						id="password"
+						type="password"
+						onChange={this.handleChange}
+						value={password}
+						required
+					/>
 				</div>
 				<Button icon={faPaperPlane}>Submit</Button>
 			</form>

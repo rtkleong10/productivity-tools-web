@@ -53,19 +53,44 @@ export default class SignupForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label>Email</label>
-					<input name="email" type="email" onChange={this.handleChange} value={email} />
+					<input
+						name="email"
+						type="email"
+						onChange={this.handleChange}
+						value={email}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label>Username</label>
-					<input name="username" type="text" onChange={this.handleChange} value={username} />
+					<input
+						name="username"
+						type="text"
+						onChange={this.handleChange}
+						value={username}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label>Password</label>
-					<input name="password" type="password" onChange={this.handleChange} value={password} />
+					<input
+						autoComplete="new-password"
+						name="password"
+						type="password"
+						onChange={this.handleChange}
+						value={password}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label>Confirm Password</label>
-					<input name="password2" type="password" onChange={this.handleChange} value={password2} />
+					<input
+						name="password2"
+						type="password"
+						onChange={this.handleChange}
+						value={password2}
+						required
+					/>
 				</div>
 				<Button icon={faPaperPlane}>Submit</Button>
 			</form>

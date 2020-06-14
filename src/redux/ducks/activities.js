@@ -3,7 +3,7 @@ import axios from 'axios';
 import { API_URL } from '../../utils/constants';
 import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig } from './helpers';
 
-const ENTITY_NAME = 'activities';
+export const ENTITY_NAME = 'activities';
 
 // REDUCER
 const activitiesReducer = createApiReducer(ENTITY_NAME);
@@ -25,7 +25,11 @@ export const createActivity = ({ title, description, frequency, color }) => (dis
 			getTokenConfig(getState)
 		)
 		.then(res => {
-			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
+			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, {
+				...res.data,
+				color: color.hex_code,
+				days_since: 0,
+			}));
 		})
 		.catch(err => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE, err));
@@ -79,7 +83,7 @@ export const deleteActivity = activityId => (dispatch, getState) => {
 			`${API_URL}/${ENTITY_NAME}/${activityId}/`,
 			getTokenConfig(getState)
 		)
-		.then(res => {
+		.then(() => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityId));
 		})
 		.catch(err => {
@@ -111,3 +115,4 @@ export const selectActivities = state => state.activitiesReducer.items;
 export const selectActivityLoading = state => state.activitiesReducer.loading[METHODS.RETRIEVE] === true;
 export const selectActivityError = state => state.activitiesReducer.error[METHODS.RETRIEVE];
 export const selectActivity = state => state.activitiesReducer.item;
+export const selectActivityId = state => state.activitiesReducer.itemId;

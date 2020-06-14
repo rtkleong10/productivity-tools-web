@@ -1,28 +1,8 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from '../Select';
+import { connect } from 'react-redux';
 
-const colourOptions = [
-	{
-		value: '#D94150',
-		label: 'Red',
-	},
-	{
-		value: '#F5D624',
-		label: 'Yellow',
-	},
-	{
-		value: '#25BA9C',
-		label: 'Green',
-	},
-	{
-		value: '#4597E3',
-		label: 'Blue',
-	},
-	{
-		value: '#9D5BFF',
-		label: 'Purple',
-	}
-]
+import { listColors, selectColors, selectColorsLoading, selectColorsError } from '../../redux/ducks/colors'; 
 
 const dot = color => ({
 	alignItems: 'center',
@@ -39,18 +19,58 @@ const dot = color => ({
 	},
 });
 
-const colourStyles = {
-	option: (styles, { data }) => ({ ...styles, ...dot(data.value) }),
-	singleValue: (styles, { data }) => ({ ...styles, ...dot(data.value) }),
+const colorStyles = {
+	option: (styles, { data }) => ({ ...styles, ...dot(data.hex_code) }),
+	singleValue: (styles, { data }) => ({ ...styles, ...dot(data.hex_code) }),
 };
 
-export default function ColorSelect(props) {
+export function ColorSelect(props) {
+	const {
+		colors,
+		colorsLoading,
+		listColors,
+	} = props;
+
+	useEffect(listColors, [listColors]);
+	
+	let colorOptions = [];
+	
+	if (colors) {
+		colorOptions = colors.map(color => {
+			const {
+				id,
+				title,
+				hex_code,
+			} = color;
+	
+			return {
+				value: id,
+				label: title,
+				hex_code,
+			};
+		})
+	}
+
 	return (
 		<Select
-			placeholder="Select a colour"
-			options={colourOptions}
-			styles={colourStyles}
+			placeholder="Select a color"
+			isLoading={colorsLoading}
+			options={colorOptions}
+			styles={colorStyles}
 			isSearchable={false}
-			{...props} />
+			{...props}
+			/>
 	);
 }
+
+const mapStateToProps = state => ({
+	colors: selectColors(state),
+	colorsLoading: selectColorsLoading(state),
+	colorsError: selectColorsError(state),
+});
+
+const dispatchers = {
+	listColors,
+};
+
+export default connect(mapStateToProps, dispatchers)(ColorSelect);

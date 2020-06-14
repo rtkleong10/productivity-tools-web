@@ -7,23 +7,70 @@ import { Helmet } from "react-helmet";
 import Button from '../../components/Button';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import Loader from '../../components/Loader';
+import Modal from '../../components/Modal';
+import ActivityForm from '../ActivityForm';
 import { getFrequencyDisplay } from '../utils';
-import { retrieveActivity, selectActivity, selectActivityLoading, selectActivityError } from '../../redux/ducks/activities';
-import './index.scss';
+import { retrieveActivity, updateActivity, deleteActivity, selectActivity, selectActivityLoading, selectActivityError, selectActivityId } from '../../redux/ducks/activities';
 import EventList from '../EventList';
+import DeleteForm from '../../components/DeleteForm';
+import { MODAL_TYPES } from '../../utils/constants';
+import { getTextWithBrs } from '../../utils/text';
+import './index.scss';
 
 export class ActivityDetailPage extends Component {
+	state = {
+		[MODAL_TYPES.EDIT]: false,
+		[MODAL_TYPES.DELETE]: false,
+	};
+
 	constructor(props) {
 		super(props);
 
 		const activityId = props.match.params.activityId;
 		props.retrieveActivity(activityId);
-		console.log("RETRIEVE")
+	}
+
+	handleVisibilityChange = (modal, isVisible) => {
+		this.setState({
+			[modal]: isVisible,
+		});
+	}
+
+	openModal = modal => {
+		this.setState({
+			[modal]: true,
+		});
+
+		if (modal === MODAL_TYPES.EDIT)
+			this.activityFormRef.reset(this.props.activity);
+	}
+
+	handleEditActivity = activity => {
+		this.setState({
+			[MODAL_TYPES.EDIT]: false,
+		});
+
+		this.props.updateActivity({...this.props.activity, ...activity});
+	}
+
+	handleDeleteActivity = isConfirm => {
+		const {
+			activity,
+			deleteActivity,
+		} = this.props;
+
+		this.setState({
+			[MODAL_TYPES.DELETE]: false,
+		});
+
+		if (isConfirm)
+			deleteActivity(activity.id);
 	}
 
 	render() {
 		const {
 			activity,
+			activityId,
 			activityLoading,
 			activityError,
 			match: {
@@ -31,14 +78,10 @@ export class ActivityDetailPage extends Component {
 			}
 		} = this.props;
 
-		console.log(this.props);
-
-		const activityId = params.activityId;
-
-		if ((!activity && activityLoading) || activity.id !== activityId)
+		if (activityLoading || activityId !== params.activityId)
 			return <Loader />;
 		
-		if (activityError)
+		if (!activity || activityError)
 			return <Redirect to="/days-since" />;
 		
 		const {
@@ -46,7 +89,7 @@ export class ActivityDetailPage extends Component {
 			description,
 			frequency,
 		} = activity;
-
+		
 		return (
 			<div className="container">
 				<Helmet>
@@ -60,20 +103,34 @@ export class ActivityDetailPage extends Component {
 					]} />
 				<div className="grid activity-detail">
 					<div>
-						<h1>{title}</h1>
 						<div className="mb-20">
-							<p>{description}</p>
-							<p>Frequency: {getFrequencyDisplay(frequency)}</p>
+							<h1>{title}</h1>
+							{description && <p>{getTextWithBrs(description)}</p>}
+							{frequency && <p>Frequency: {getFrequencyDisplay(frequency)}</p>}
 						</div>
-						<div>
-							<Button icon={faEdit} color="green" className="mr-5">Edit</Button>
-							<Button icon={faTrash} color="red">Delete</Button>
+						<div className="btn-group">
+							<Button icon={faEdit} color="green" onClick={() => this.openModal(MODAL_TYPES.EDIT)}>Edit</Button>
+							<Button icon={faTrash} color="red" onClick={() => this.openModal(MODAL_TYPES.DELETE)}>Delete</Button>
 						</div>
 					</div>
 					<EventList
 						activityId={activityId}
 					/>
 				</div>
+				<Modal
+					title="Edit Activity"
+					isVisible={this.state[MODAL_TYPES.EDIT]}
+					onVisibilityChange={visibility => this.handleVisibilityChange(MODAL_TYPES.EDIT, visibility)}
+				>
+					<ActivityForm onSubmit={this.handleEditActivity} ref={activityForm => this.activityFormRef = activityForm} />
+				</Modal>
+				<Modal
+					title="Delete Activity"
+					isVisible={this.state[MODAL_TYPES.DELETE]}
+					onVisibilityChange={visibility => this.handleVisibilityChange(MODAL_TYPES.DELETE, visibility)}
+				>
+					<DeleteForm onSubmit={this.handleDeleteActivity} />
+				</Modal>
 			</div>
 		);
 	}
@@ -81,12 +138,15 @@ export class ActivityDetailPage extends Component {
 
 const mapStateToProps = state => ({
 	activity: selectActivity(state),
+	activityId: selectActivityId(state),
 	activityLoading: selectActivityLoading(state),
 	activityError: selectActivityError(state),
 });
 
 const dispatchers = {
 	retrieveActivity,
+	updateActivity,
+	deleteActivity,
 };
 
 export default connect(mapStateToProps, dispatchers)(ActivityDetailPage);

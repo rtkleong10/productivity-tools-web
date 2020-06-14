@@ -3,6 +3,17 @@ export const EVENT_TYPES = {
 	SKIPPED: 2,
 }
 
+export const EVENT_TYPE_OPTIONS = [
+	{
+		value: EVENT_TYPES.COMPLETED,
+		label: "Completed",
+	},
+	{
+		value: EVENT_TYPES.SKIPPED,
+		label: "Skipped",
+	},
+]
+
 export function getFrequencyDisplay(frequency) {
 	if (frequency === 1)
 		return "Everyday";

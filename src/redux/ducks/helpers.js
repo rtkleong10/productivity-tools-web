@@ -56,6 +56,7 @@ export function createApiReducer(entityName, id="id") {
 		},
         items: [],
         item: null,
+        itemId: null,
     };
 
     return function reducer(state = initialState, action) {
@@ -84,7 +85,7 @@ export function createApiReducer(entityName, id="id") {
                         ...state.error,
                         [actionMethod]: null
                     },
-                    item: (actionMethod === METHODS.RETRIEVE || actionMethod === METHODS.UPDATE) ? { [id]: action.payload } : state.item,
+                    itemId: (action.payload) ? action.payload : state.itemId,
                 };
 
             case STATUSES.SUCCESS:
@@ -116,7 +117,7 @@ export function createApiReducer(entityName, id="id") {
                                 ...state.loading,
                                 [actionMethod]: false
                             },
-                            items: state.items.map(item => (item[id] === action.payload[id]) ? action.payload : item),
+                            items: state.items.map(item => (item[id] === action.payload[id]) ? { ...item, ...action.payload } : item),
                             item: action.payload,
                         }
 
@@ -125,7 +126,11 @@ export function createApiReducer(entityName, id="id") {
                             ...state,
                             loading: {
                                 ...state.loading,
-                                [actionMethod]: false
+                                [actionMethod]: false,
+                            },
+                            error: {
+                                ...state.error,
+                                [METHODS.RETRIEVE]: state.item && state.item[id] === action.payload ? "Deleted" : state.error[METHODS.RETRIEVE],
                             },
                             items: state.items.filter(item => item[id] !== action.payload),
                         }

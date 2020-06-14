@@ -16,11 +16,17 @@ const colors = [
 	'purple',
 ];
 
+const sizes = [
+	'sm',
+	'md',
+]
+
 export default function Button(props) {
 	const {
 		className,
 		isLink,
 		isRounded,
+		size,
 		color,
 		icon,
 		children,
@@ -39,6 +45,10 @@ export default function Button(props) {
 	// Icon
 	if (icon)
 		classList.push('btn-icon');
+	
+	// Size
+	if (sizes.includes(size) && color !== 'md')
+		classList.push(`btn-${size}`);
 
 	// Color
 	if (colors.includes(color) && color !== 'dark-grey')
@@ -71,6 +81,7 @@ Button.propTypes = {
 	isLink: PropTypes.bool,
 	isRounded: PropTypes.bool,
 	icon: PropTypes.object,
+	size: PropTypes.oneOf(sizes),
 	color: PropTypes.oneOf(colors),
 	children: PropTypes.string,
 }

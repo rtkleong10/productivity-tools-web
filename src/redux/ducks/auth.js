@@ -11,7 +11,7 @@ export const LOGOUT = 'LOGOUT';
 
 // REDUCER
 const initialState = {
-	accessToken: Cookies.get("accessToken"),
+	accessToken: null,
 	refreshToken: Cookies.get("refreshToken"),
 	loginLoading: false,
 	loginError: null,
@@ -19,7 +19,7 @@ const initialState = {
 	signupError: null,
 };
 
-export default function (state = initialState, action) {
+export default function authReducer(state = initialState, action) {
 	switch (action.type) {
 		case LOGIN_ACTIONS.REQUEST:
 			return {
@@ -34,7 +34,6 @@ export default function (state = initialState, action) {
 				refresh: refreshToken,
 			} = action.payload;
 
-			Cookies.set("accessToken", accessToken);
 			Cookies.set("refreshToken", refreshToken);
 
 			return {
@@ -45,7 +44,6 @@ export default function (state = initialState, action) {
 			}
 
 		case LOGIN_ACTIONS.FAILURE:
-			Cookies.remove("accessToken");
 			Cookies.remove("refreshToken");
 
 			return {
@@ -55,9 +53,8 @@ export default function (state = initialState, action) {
 				loginLoading: false,
 				loginError: action.payload,
 			}
-
+		
 		case LOGOUT:
-			Cookies.remove("accessToken");
 			Cookies.remove("refreshToken");
 
 			return {
@@ -77,7 +74,7 @@ export const authLogin = ({ username, password }) => dispatch => {
 	dispatch(createAction(LOGIN_ACTIONS.REQUEST));
 
 	axios.post(
-		`${AUTH_URL}/jwt/create`,
+		`${AUTH_URL}/jwt/create/`,
 		{
 			username,
 			password,
@@ -96,7 +93,7 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
 	const refreshToken = getState().authReducer.refreshToken;
 
 	axios.post(
-		`${AUTH_URL}/jwt/refresh`,
+		`${AUTH_URL}/jwt/refresh/`,
 		{
 			refresh: refreshToken,
 		}
@@ -116,7 +113,7 @@ export const signup = ({ email, username, password }) => dispatch => {
 	dispatch(createAction(SIGNUP_ACTIONS.REQUEST));
 
 	axios.post(
-		`${AUTH_URL}/users`,
+		`${AUTH_URL}/users/`,
 		{
 			email,
 			username,
@@ -127,7 +124,6 @@ export const signup = ({ email, username, password }) => dispatch => {
 			dispatch(createAction(SIGNUP_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
-			// displayError("Unable to sign up")(dispatch);
 			dispatch(createAction(SIGNUP_ACTIONS.FAILURE, err));
 		});
 };
@@ -137,6 +133,8 @@ export const logout = () => dispatch => {
 };
 
 // SELECTORS
+export const selectRefreshToken = state => state.authReducer.refreshToken;
+export const selectAccessToken = state => state.authReducer.accessToken;
+
 export const selectLoginLoading = state => state.authReducer.loginLoading;
 export const selectLoginError = state => state.authReducer.loginError;
-export const selectRefreshToken = state => state.authReducer.refreshToken;

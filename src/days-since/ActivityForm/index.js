@@ -10,7 +10,33 @@ export default class ActivityForm extends Component {
 		title: "",
 		description: "",
 		frequency: "",
-		color: null,
+		color: undefined,
+	}
+
+	reset = activity => {
+		if (activity) {
+			const {
+				title,
+				description,
+				frequency,
+				color,
+			} = activity;
+
+			this.setState({
+				title,
+				description,
+				frequency: frequency === null ? "" : frequency,
+				color,
+			});
+
+		} else {
+			this.setState({
+				title: "",
+				description: "",
+				frequency: "",
+				color: null,
+			});
+		}
 	}
 
 	handleChange = e => {
@@ -38,7 +64,7 @@ export default class ActivityForm extends Component {
 		this.props.onSubmit({
 			title,
 			description,
-			frequency,
+			frequency: parseInt(frequency),
 			color,
 		});
 	}
@@ -55,19 +81,46 @@ export default class ActivityForm extends Component {
 			<form onSubmit={this.handleSubmit}>
 				<div className="form-group">
 					<label htmlFor="title">Title</label>
-					<input id="title" name="title" type="text" onChange={this.handleChange} value={title} />
+					<input
+						id="title"
+						name="title"
+						type="text"
+						maxLength="200"
+						onChange={this.handleChange}
+						value={title}
+						required
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="description">Description</label>
-					<textarea id="description" name="description" onChange={this.handleChange} value={description} />
+					<textarea
+						id="description"
+						name="description"
+						onChange={this.handleChange}
+						value={description}
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="frequency">Frequency</label>
-					<input id="frequency" name="frequency" type="number" min={1} onChange={this.handleChange} value={frequency} />
+					<input
+						id="frequency"
+						name="frequency"
+						type="number"
+						min={1}
+						step={1}
+						onChange={this.handleChange}
+						value={frequency}
+					/>
 				</div>
 				<div className="form-group">
 					<label htmlFor="color">Color</label>
-					<ColorSelect id="color" name="color" onChange={this.handleColorChange} value={color} />
+					<ColorSelect
+						id="color"
+						name="color"
+						onChange={this.handleColorChange}
+						value={color}
+						required
+					/>
 				</div>
 				<Button icon={faPaperPlane}>Submit</Button>
 			</form>

@@ -7,7 +7,7 @@ import HomePage from '../HomePage';
 import NotFoundPage from '../NotFoundPage';
 import { GUEST_AUTH_ROUTES, USER_AUTH_ROUTES } from '../../auth/routes';
 import DAYS_SINCE_ROUTES from '../../days-since/routes';
-import { refreshTokenLogin, selectRefreshToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
+import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
 
 export class AppRouter extends Component {
 	componentDidMount() {
@@ -25,12 +25,13 @@ export class AppRouter extends Component {
 			loginLoading,
 			loginError,
 			refreshToken,
+			accessToken,
 		} = this.props;
 
-		if (refreshToken && loginLoading)
+		if ((refreshToken && !accessToken) || loginLoading)
 			return <Loader />;
 
-		if (!refreshToken || loginError) {
+		if (!accessToken || loginError) {
 			return (
 				<BrowserRouter>
 					<Switch>
@@ -107,6 +108,7 @@ const mapStateToProps = state => ({
 	loginLoading: selectLoginLoading(state),
 	loginError: selectLoginError(state),
 	refreshToken: selectRefreshToken(state),
+	accessToken: selectAccessToken(state),
 });
 
 const dispatchers = {

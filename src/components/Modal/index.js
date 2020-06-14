@@ -76,13 +76,10 @@ export class Modal extends Component {
 					<div className="modal-content">
 						{
 							title && (
-								<>
-									<div className="modal-header">
-										<p className="modal-title">{title}</p>
-										<Button className="modal-close-button" color="white" icon={faTimes} onClick={this.handleClose} />
-									</div>
-									<hr />
-								</>
+								<div className="modal-header">
+									<p className="modal-title">{title}</p>
+									<Button className="modal-close-button" color="white" icon={faTimes} onClick={this.handleClose} />
+								</div>
 							)
 						}
 						{children}

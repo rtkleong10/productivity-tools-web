@@ -1,26 +1,51 @@
 import axios from 'axios';
 
+import { ENTITY_NAME as ACTIVITIES_ENTITY_NAME } from './activities';
 import { API_URL } from '../../utils/constants';
 import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig } from './helpers';
 
-const ENTITY_NAME = 'activityevents';
+export const ENTITY_NAME = 'activityevents';
 
 // REDUCER
 const activityEventsReducer = createApiReducer(ENTITY_NAME);
 export default activityEventsReducer;
 
 // OPERATIONS
-export const createActivityEvent = (activityId, { title, description, frequency, color }) => (dispatch, getState) => {
+export const performEvent = (activityId, event_type) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
     axios
         .post(
             `${API_URL}/activities/${activityId}/events/`,
 			{
-				title,
-				description,
-				frequency,
-				color,
+				event_type,
+			},
+            getTokenConfig(getState)
+        )
+        .then(res => {
+            dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
+            dispatch(createApiAction(ACTIVITIES_ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, {
+                id: activityId,
+                days_since: 0,
+                todays_event: event_type,
+            }));
+        })
+        .catch(err => {
+            dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE, err));
+        });
+    ;
+};
+
+export const createActivityEvent = (activityId, { event_type, date, description }) => (dispatch, getState) => {
+    dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
+
+    axios
+        .post(
+            `${API_URL}/activities/${activityId}/events/`,
+			{
+				event_type,
+                date,
+                description,
 			},
             getTokenConfig(getState)
         )
@@ -50,16 +75,15 @@ export const retrieveActivityEvent = (activityId, activityEventId) => (dispatch,
     ;
 };
 
-export const updateActivityEvent = (activityId, { id, title, description, frequency, color }) => (dispatch, getState) => {
+export const updateActivityEvent = (activityId, { id, event_type, date, description}) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE, id));
     axios
         .patch(
             `${API_URL}/activities/${activityId}/events/${id}/`,
             {
-				title,
-				description,
-				frequency,
-				color,
+                event_type,
+                date,
+                description,
 			},
             getTokenConfig(getState)
         )
@@ -79,7 +103,7 @@ export const deleteActivityEvent = (activityId, activityEventId) => (dispatch, g
             `${API_URL}/activities/${activityId}/events/${activityEventId}/`,
             getTokenConfig(getState)
         )
-        .then(res => {
+        .then(() => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityEventId));
         })
         .catch(err => {

@@ -1,0 +1,51 @@
+@import '../../styles/1-helpers/all';
+
+.date-picker {
+	position: relative;
+
+	.calendar-icon {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		right: 13px;
+		font-size: 14px;
+		color: $light-grey;
+	}
+
+	.DayPickerInput {
+		display: block;
+	
+		&, .DayPicker {
+			font: $p-font;
+			color: $dark-grey;
+		}
+	
+		> input {
+			cursor: pointer;
+		}
+	}
+
+	.DayPickerInput-Overlay {
+		top: 10px;
+		box-shadow: $raised-shadow;
+	}
+	
+	.DayPicker-Day {
+		border-radius: 5px;
+	
+		&:hover {
+			background-color: $faded-grey;
+		}
+	}
+	.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+		background-color: $blue;
+	}
+	  
+	.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+		background-color: $light-blue;
+	}
+	
+	.DayPicker-Day--today {
+		color: $blue;
+	}
+}

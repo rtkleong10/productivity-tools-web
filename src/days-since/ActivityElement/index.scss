@@ -8,7 +8,7 @@
     box-shadow: $popover-shadow;
     margin-bottom: 30px;
 
-    > :first-child {
+    .progress-circle {
         margin-right: 30px;
     }
 
@@ -23,7 +23,7 @@
     @include media-breakpoint-down('sm') {
         display: block;
 
-        > :first-child {
+        .progress-circle {
             margin-right: 0px;
             margin-bottom: 10px;
         }
