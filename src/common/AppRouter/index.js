@@ -9,6 +9,12 @@ import { GUEST_AUTH_ROUTES, USER_AUTH_ROUTES } from '../../auth/routes';
 import DAYS_SINCE_ROUTES from '../../days-since/routes';
 import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
 
+const RedirectToNext = props => {
+	const next = new URLSearchParams(props.location.search).get("next");
+	console.log(next);
+	return <Redirect to={`/${next ? next : ""}`} />;
+};
+
 export class AppRouter extends Component {
 	componentDidMount() {
 		const {
@@ -39,23 +45,14 @@ export class AppRouter extends Component {
 							GUEST_AUTH_ROUTES.map((route, i) => <Route key={i} {...route} />)
 						}
 						<Redirect
-							from="/logout"
+							from="/:next"
 							exact
-							to="/login"
+							to="/login?next=:next"
 						/>
 						<Redirect
 							from="/"
 							exact
 							to="/login"
-						/>
-						<Route
-							path="/not-found"
-							exact
-							component={NotFoundPage}
-						/>
-						<Redirect
-							from="/"
-							to="/not-found"
 						/>
 					</Switch>
 				</BrowserRouter>
@@ -88,6 +85,11 @@ export class AppRouter extends Component {
 								/>
 							))
 						}
+						<Route
+							path="/login"
+							exact
+							component={RedirectToNext}
+						/>
 						<Route
 							path="/not-found"
 							exact
