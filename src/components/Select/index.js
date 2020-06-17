@@ -7,11 +7,19 @@ export default function Select(props) {
 	const {
 		options,
 		value,
-		onChange,
 		disabled,
 		required,
 		...rest
 	} = props;
+
+	let optionValue = value;
+
+	if (value) {
+		let option = options.find(option => option.value === value);
+
+		if (option)
+			optionValue = option;
+	}
 
 	return (
 		<>
@@ -22,8 +30,7 @@ export default function Select(props) {
 				components={{ IndicatorSeparator: () => null }}
 				options={options}
 				disabled={disabled}
-				value={value ? options.find(option => option.value === value) : null}
-				onChange={option => onChange(option.value)}
+				value={optionValue}
 				{...rest}
 			/>
 			{

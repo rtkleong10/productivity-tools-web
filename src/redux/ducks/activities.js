@@ -20,7 +20,7 @@ export const createActivity = ({ title, description, frequency, color }) => (dis
 				title,
 				description,
 				frequency,
-				color,
+				color: color.value,
 			},
 			getTokenConfig(getState)
 		)
@@ -56,6 +56,7 @@ export const retrieveActivity = activityId => (dispatch, getState) => {
 
 export const updateActivity = ({ id, title, description, frequency, color }) => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE, id));
+	
 	axios
 		.patch(
 			`${API_URL}/${ENTITY_NAME}/${id}/`,
@@ -63,12 +64,15 @@ export const updateActivity = ({ id, title, description, frequency, color }) => 
 				title,
 				description,
 				frequency,
-				color,
+				color: color.value,
 			},
 			getTokenConfig(getState)
 		)
 		.then(res => {
-			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
+			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, {
+				...res.data,
+				color: color.hex_code,
+			}));
 		})
 		.catch(err => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE, err));
