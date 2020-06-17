@@ -122,6 +122,7 @@ export const signup = ({ email, username, password }) => dispatch => {
 	)
 		.then(res => {
 			dispatch(createAction(SIGNUP_ACTIONS.SUCCESS, res.data));
+			authLogin({ username, password })(dispatch);
 		})
 		.catch(err => {
 			dispatch(createAction(SIGNUP_ACTIONS.FAILURE, err));
