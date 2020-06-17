@@ -1,13 +1,14 @@
-// @import "fonts/avenir-next";
-// @import "fonts/ubuntu";
+@import "fonts/avenir-next/styles";
+@import "fonts/futura/styles";
 
 // Font Families
-$futura: 'Futura', Arial, sans-serif;
+// $futura: Futura, "Trebuchet MS", Arial, sans-serif;
+$futura: Futura, Times;
 $avenir-next: 'Avenir Next', Helvetica, Arial, sans-serif;
 
 // Fonts
-$h1-font: bold 25.768px/1.5 $futura;
-$h2-font: bold 23.426px/1.5 $futura;
+$h1-font: 700 25.768px/1.5 $futura;
+$h2-font: 700 23.426px/1.5 $futura;
 $h3-font: 500 21.296px/1.5 $futura;
 $h4-font: 500 19.36px/1.5 $futura;
 $h5-font: 500 17.6px/1.5 $futura;
