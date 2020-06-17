@@ -11,7 +11,6 @@ import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLo
 
 const RedirectToNext = props => {
 	const next = new URLSearchParams(props.location.search).get("next");
-	console.log(next);
 	return <Redirect to={`/${next ? next : ""}`} />;
 };
 
