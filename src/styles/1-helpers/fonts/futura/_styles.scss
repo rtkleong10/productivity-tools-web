@@ -1,17 +1,17 @@
 @font-face {
-    font-family: Futura;
-    src: url('futura-bold-03-webfont.woff2') format('woff2'),
-         url('futura-bold-03-webfont.woff') format('woff');
+    font-family: "Futura";
     font-weight: 700;
     font-style: normal;
-
+    font-display: swap;
+    src: local("Futura Bold"), local("Futura-Bold"), url("futura-bold-03-webfont.woff2") format("woff2"),
+        url("futura-bold-03-webfont.woff") format("woff"), url("./Futura-Bold-03.ttf") format("truetype");
 }
 
 @font-face {
-    font-family: Futura;
-    src: url('futura-medium-01-webfont.woff2') format('woff2'),
-         url('futura-medium-01-webfont.woff') format('woff');
+    font-family: "Futura";
     font-weight: 500;
     font-style: normal;
+    font-display: swap;
+    src: local("Futura Medium"), local("Futura-Medium"), url("futura-medium-01-webfont.woff2") format("woff2"),
+        url("futura-medium-01-webfont.woff") format("woff"), url("./Futura-Medium-01.ttf") format("truetype");
 }
-

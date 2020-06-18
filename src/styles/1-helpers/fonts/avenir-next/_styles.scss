@@ -1,31 +1,32 @@
 @font-face {
-	font-family: 'Avenir Next';
+	font-family: "Avenir Next";
 	font-weight: 400;
 	font-style: normal;
 	font-display: swap;
-	src: local('Avenir Next'), local('AvenirNext-Regular'), url("./AvenirNext-Regular-08.ttf") format("truetype");
+	src: local("Avenir Next"), local("AvenirNext-Regular"), url("./AvenirNext-Regular-08.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'Avenir Next';
+	font-family: "Avenir Next";
 	font-weight: 500;
 	font-style: normal;
 	font-display: swap;
-	src: local('Avenir Next Medium'), local('AvenirNext-Medium');//, url("./AvenirNext-Medium-06.ttf") format("truetype");
+	src: local("Avenir Next Medium"), local("AvenirNext-Medium"), url("./AvenirNext-Medium-06.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'Avenir Next';
+	font-family: "Avenir Next";
 	font-weight: 600;
 	font-style: normal;
 	font-display: swap;
-	src: local('Avenir Next DemiBold'), local('AvenirNext-DemiBold'), url("./AvenirNext-DemiBold-03.ttf") format("truetype");
+	src: local("Avenir Next DemiBold"), local("AvenirNext-DemiBold"),
+		url("./AvenirNext-DemiBold-03.ttf") format("truetype");
 }
 
 @font-face {
-	font-family: 'Avenir Next';
+	font-family: "Avenir Next";
 	font-weight: 700;
 	font-style: normal;
 	font-display: swap;
-	src: local('Avenir Next Bold'), local('AvenirNext-Bold'), url("./AvenirNext-Bold-01.ttf") format("truetype");
+	src: local("Avenir Next Bold"), local("AvenirNext-Bold"), url("./AvenirNext-Bold-01.ttf") format("truetype");
 }
