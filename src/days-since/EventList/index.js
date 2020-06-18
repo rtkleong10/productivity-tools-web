@@ -157,7 +157,7 @@ export class EventList extends Component {
 								);
 							})
 							: <div className="center m-30">
-								<img src={empty} />
+								<img className="mb-20" src={empty} />
 								<h3>No Events</h3>
 							</div>
 					}
