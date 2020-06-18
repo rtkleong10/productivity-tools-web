@@ -160,7 +160,7 @@ export class EventList extends Component {
 							}
 						</div>
 						: <div className="center mt-40">
-							<img className="mb-20" src={empty} />
+							<img className="mb-20" src={empty} alt="Trees under the sun" />
 							<h3>No Events</h3>
 						</div>
 				}

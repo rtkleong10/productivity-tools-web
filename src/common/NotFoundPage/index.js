@@ -12,7 +12,7 @@ export default function NotFoundPage() {
 				<title>Not Found</title>
 			</Helmet>
 			<div className="center mt-40">
-				<img src={notFound} />
+				<img src={notFound} alt="Creatures hiding behind trees" />
 				<div className="mb-20">
 					<h1>404 Not Found</h1>
 					<p>Sorry, we can't seem to find the page that you're looking for.</p>

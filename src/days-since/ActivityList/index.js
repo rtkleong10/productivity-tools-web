@@ -110,7 +110,7 @@ export class ActivityListPage extends Component {
 					activities.length === 0 &&
 					<div className="grid mt-40">
 						<div className="activity-list-empty center">
-							<img className="mb-20" src={empty} />
+							<img className="mb-20" src={empty} alt="Empty street" />
 							<h3>No Activities</h3>
 						</div>
 					</div>
