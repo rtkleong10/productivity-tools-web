@@ -42,10 +42,6 @@ export default function Button(props) {
 	if (isRounded)
 		classList.push('btn-rounded');
 	
-	// Icon
-	if (icon)
-		classList.push('btn-icon');
-	
 	// Size
 	if (sizes.includes(size) && color !== 'md')
 		classList.push(`btn-${size}`);

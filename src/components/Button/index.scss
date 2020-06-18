@@ -13,7 +13,7 @@
 	box-shadow: $raised-shadow;
 	
 	font: 500 14px $futura;
-	text-align: center;
+	text-align: left;
 
 	background-color: $dark-grey;
 	color: $white;
@@ -27,12 +27,7 @@
 	&.btn-rounded {
 		border-radius: 9999px;
 	}
-
-	// Icon
-	&.btn-icon {
-		text-align: left;
-	}
-
+	
 	// Sizes
 	&.btn-sm {
 		font-size: 12px;
