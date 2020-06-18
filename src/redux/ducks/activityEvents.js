@@ -27,6 +27,7 @@ export const performEvent = (activityId, event_type) => (dispatch, getState) => 
             dispatch(createApiAction(ACTIVITIES_ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, {
                 id: activityId,
                 days_since: 0,
+                last_event_type: event_type,
                 todays_event: event_type,
             }));
         })
