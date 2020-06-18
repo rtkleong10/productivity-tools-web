@@ -114,54 +114,56 @@ export class EventList extends Component {
 				<div className="mb-20">
 					<Button icon={faPlus} color="blue" onClick={() => this.openModal(MODAL_TYPES.CREATE)}>Create Event</Button>
 				</div>
-				<div className="box">
-					{
-						activityEvents.length !== 0
-							? activityEvents.map(event => {
-								const {
-									id,
-									event_type,
-									date,
-									description,
-								} = event;
+				{
+					activityEvents.length !== 0
+						? <div className="box">
+							{
+								activityEvents.map(event => {
+									const {
+										id,
+										event_type,
+										date,
+										description,
+									} = event;
 
-								var eventDisplay = "";
+									var eventDisplay = "";
 
-								switch (event_type) {
-									case EVENT_TYPES.COMPLETED:
-										eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</>
-										break;
+									switch (event_type) {
+										case EVENT_TYPES.COMPLETED:
+											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</>
+											break;
 
-									case EVENT_TYPES.SKIPPED:
-										eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</>;
-										break;
+										case EVENT_TYPES.SKIPPED:
+											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</>;
+											break;
 
-									default:
-										eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faQuestion} />Unknown event</>;
-										break;
-								}
+										default:
+											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faQuestion} />Unknown event</>;
+											break;
+									}
 
-								const dateStr = moment(date).format('D MMMM YYYY');;
+									const dateStr = moment(date).format('D MMMM YYYY');;
 
-								return (
-									<div key={id} className="event-item">
-										<div>
-											<p>{eventDisplay} on {dateStr}</p>
-											<p className="small">{getTextWithBrs(description)}</p>
+									return (
+										<div key={id} className="event-item">
+											<div>
+												<p>{eventDisplay} on {dateStr}</p>
+												<p className="small">{getTextWithBrs(description)}</p>
+											</div>
+											<div className="btn-group">
+												<Button icon={faEdit} color="green" size="sm" onClick={() => this.openModal(MODAL_TYPES.EDIT, event)} />
+												<Button icon={faTrash} color="red" size="sm" onClick={() => this.openModal(MODAL_TYPES.DELETE, event)} />
+											</div>
 										</div>
-										<div className="btn-group">
-											<Button icon={faEdit} color="green" size="sm" onClick={() => this.openModal(MODAL_TYPES.EDIT, event)} />
-											<Button icon={faTrash} color="red" size="sm" onClick={() => this.openModal(MODAL_TYPES.DELETE, event)} />
-										</div>
-									</div>
-								);
-							})
-							: <div className="center m-30">
-								<img className="mb-20" src={empty} />
-								<h3>No Events</h3>
-							</div>
-					}
-				</div>
+									);
+								})
+							}
+						</div>
+						: <div className="center mt-40">
+							<img className="mb-20" src={empty} />
+							<h3>No Events</h3>
+						</div>
+				}
 				<Modal
 					title="Create Event"
 					isVisible={this.state[MODAL_TYPES.CREATE]}
