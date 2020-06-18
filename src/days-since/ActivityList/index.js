@@ -9,6 +9,7 @@ import ActivityElement from '../ActivityElement';
 import { listActivities, selectActivities, selectActivitiesLoading, selectActivitiesError } from '../../redux/ducks/activities';
 import { listColors, selectColors, selectColorsLoading, selectColorsError } from '../../redux/ducks/colors'; 
 import './index.scss';
+import empty from './empty.svg';
 
 export class ActivityListPage extends Component {
 	constructor(props) {
@@ -106,7 +107,13 @@ export class ActivityListPage extends Component {
 					</div>
 				}
 				{
-					activities.length === 0 && <p>No activities found.</p>
+					activities.length === 0 &&
+					<div className="grid mt-40">
+						<div className="activity-list-empty center">
+							<img className="mb-20" src={empty} />
+							<h3>No Activities</h3>
+						</div>
+					</div>
 				}
 			</div>
 		);

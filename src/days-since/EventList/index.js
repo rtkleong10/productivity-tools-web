@@ -15,6 +15,7 @@ import './index.scss';
 import EventForm from '../EventForm';
 import DeleteForm from '../../components/DeleteForm';
 import Modal from '../../components/Modal';
+import empty from './empty.svg';
 
 export class EventList extends Component {
 	state = {
@@ -155,7 +156,10 @@ export class EventList extends Component {
 									</div>
 								);
 							})
-							: <p className="m-0">No events found</p>
+							: <div className="center m-30">
+								<img src={empty} />
+								<h3>No Events</h3>
+							</div>
 					}
 				</div>
 				<Modal

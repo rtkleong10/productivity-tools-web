@@ -11,3 +11,15 @@
         }
     }
 }
+
+.activity-list-empty {
+    grid-column: 5 / span 4;
+
+    @include media-breakpoint-down('lg') {
+        grid-column: 4 / span 6;
+    }
+
+    @include media-breakpoint-down('sm') {
+        grid-column: 3 / span 8;
+    }
+}
