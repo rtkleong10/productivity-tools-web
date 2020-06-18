@@ -20,14 +20,13 @@ export const createActivity = ({ title, description, frequency, color }) => (dis
 				title,
 				description,
 				frequency,
-				color: color.value,
+				color,
 			},
 			getTokenConfig(getState)
 		)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, {
 				...res.data,
-				color: color.hex_code,
 				days_since: 0,
 			}));
 		})
@@ -64,15 +63,12 @@ export const updateActivity = ({ id, title, description, frequency, color }) => 
 				title,
 				description,
 				frequency,
-				color: color.value,
+				color,
 			},
 			getTokenConfig(getState)
 		)
 		.then(res => {
-			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, {
-				...res.data,
-				color: color.hex_code,
-			}));
+			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
 		})
 		.catch(err => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE, err));

@@ -34,7 +34,7 @@ export default class ActivityForm extends Component {
 				title: "",
 				description: "",
 				frequency: "",
-				color: null,
+				color: undefined,
 			});
 		}
 	}

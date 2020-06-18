@@ -66,7 +66,7 @@ export default class EventForm extends Component {
 		} = this.state;
 
 		this.props.onSubmit({
-			event_type: event_type.value,
+			event_type,
 			date: moment(date).format("YYYY-MM-DD"),
 			description,
 		});

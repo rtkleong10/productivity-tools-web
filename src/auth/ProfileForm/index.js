@@ -36,7 +36,7 @@ export default class LoginForm extends Component {
 		} = this.state;
 
 		this.props.onSubmit({
-			timezone: timezone.value,
+			timezone,
 		});
 	}
 
