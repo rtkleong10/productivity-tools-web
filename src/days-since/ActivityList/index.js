@@ -57,7 +57,12 @@ export class ActivityListPage extends Component {
 		} = this.props;
 
 		if (activitiesLoading || colorsLoading)
-			return <Loader />;
+			return (
+				<div>
+					<h2>Activities</h2>
+					<Loader />
+				</div>
+			);
 
 		if (!activities || activitiesError || !colors || colorsError)
 			return <Redirect to="/" />;

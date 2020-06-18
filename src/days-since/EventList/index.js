@@ -97,7 +97,12 @@ export class EventList extends Component {
 		} = this.props;
 
 		if (activityEventsLoading)
-			return <Loader />;
+			return (
+				<div>
+					<h2>Events</h2>
+					<Loader />
+				</div>
+			);
 
 		if (!activityEvents || activityEventsError)
 			return <Redirect to="/days-since" />;

@@ -20,8 +20,21 @@ export function ProfilePage(props) {
 	useEffect(retrieveProfile, [retrieveProfile]);
 
 	if (profileLoading)
-		return <Loader />;
-	
+		return (
+			<div className="container">
+				<Helmet>
+					<title>Profile</title>
+				</Helmet>
+				<Breadcrumbs
+					breadcrumbs={[
+						{ title: "Home", to: "/" },
+						{ title: "Profile" },
+					]} />
+				<h1>Profile</h1>
+				<Loader />
+			</div>
+		);
+
 	if (!profile || profileError)
 		return <Redirect to="/" />;
 
