@@ -3,11 +3,12 @@ import Cookies from 'js-cookie';
 
 import { AUTH_URL } from '../../utils/constants';
 import { getActionTypes, createAction } from './helpers';
+import { displayError } from './errors';
 
 // ACTION TYPES
 export const LOGIN_ACTIONS = getActionTypes('LOGIN');
 export const SIGNUP_ACTIONS = getActionTypes('SIGNUP');
-export const LOGOUT = 'LOGOUT';
+export const LOGOUT_ACTION = 'LOGOUT';
 
 // REDUCER
 const initialState = {
@@ -53,8 +54,28 @@ export default function authReducer(state = initialState, action) {
 				loginLoading: false,
 				loginError: action.payload,
 			}
-		
-		case LOGOUT:
+
+		case SIGNUP_ACTIONS.REQUEST:
+			return {
+				...state,
+				signupLoading: true,
+				signupError: null,
+			}
+
+		case SIGNUP_ACTIONS.SUCCESS:
+			return {
+				...state,
+				signupLoading: false,
+			}
+
+		case SIGNUP_ACTIONS.FAILURE:
+			return {
+				...state,
+				signupLoading: false,
+				signupError: action.payload,
+			}
+
+		case LOGOUT_ACTION:
 			Cookies.remove("refreshToken");
 
 			return {
@@ -84,6 +105,7 @@ export const authLogin = ({ username, password }) => dispatch => {
 			dispatch(createAction(LOGIN_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
+			displayError("Unable to log in.")(dispatch);
 			dispatch(createAction(LOGIN_ACTIONS.FAILURE, err));
 		});
 };
@@ -105,6 +127,7 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
 			}));
 		})
 		.catch(err => {
+			displayError("Unable to log in.")(dispatch);
 			dispatch(createAction(LOGIN_ACTIONS.FAILURE, err));
 		});
 };
@@ -125,12 +148,13 @@ export const signup = ({ email, username, password }) => dispatch => {
 			authLogin({ username, password })(dispatch);
 		})
 		.catch(err => {
+			displayError("Unable to sign up.")(dispatch);
 			dispatch(createAction(SIGNUP_ACTIONS.FAILURE, err));
 		});
 };
 
 export const logout = () => dispatch => {
-	dispatch(createAction(LOGOUT));
+	dispatch(createAction(LOGOUT_ACTION));
 };
 
 // SELECTORS

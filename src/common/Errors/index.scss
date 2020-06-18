@@ -1,0 +1,44 @@
+@import "../../styles/1-helpers/all";
+
+.error-wrapper {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    width: 350px;
+    max-width: 90%;
+    z-index: 999;
+    pointer-events: none;
+}
+
+.error {
+    margin-top: 10px;
+    animation: $fade-in-animation;
+    box-shadow: $popover-shadow;
+    background-color: $white;
+    opacity: 0.9;
+    pointer-events: auto;
+    @include ease-transition;
+
+    .error-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid $light-grey;
+        margin-bottom: 10px;
+
+        p {
+            font: $h6-font;
+        }
+
+        .error-close-button {
+            box-shadow: none;
+            padding: 10px;
+            background: none;
+        }
+    }
+
+    &.error-hide {
+        visibility: hidden;
+        opacity: 0;
+    }
+}

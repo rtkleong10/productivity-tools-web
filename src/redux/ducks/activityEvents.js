@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ENTITY_NAME as ACTIVITIES_ENTITY_NAME } from './activities';
 import { API_URL } from '../../utils/constants';
-import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig } from './helpers';
+import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig, displayErrorMsgOrUnauth } from './helpers';
 
 export const ENTITY_NAME = 'activityevents';
 
@@ -17,9 +17,9 @@ export const performEvent = (activityId, event_type) => (dispatch, getState) => 
     axios
         .post(
             `${API_URL}/activities/${activityId}/events/`,
-			{
-				event_type,
-			},
+            {
+                event_type,
+            },
             getTokenConfig(getState)
         )
         .then(res => {
@@ -32,6 +32,7 @@ export const performEvent = (activityId, event_type) => (dispatch, getState) => 
             }));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to perform event.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE, err));
         });
     ;
@@ -43,17 +44,18 @@ export const createActivityEvent = (activityId, { event_type, date, description 
     axios
         .post(
             `${API_URL}/activities/${activityId}/events/`,
-			{
-				event_type,
+            {
+                event_type,
                 date,
                 description,
-			},
+            },
             getTokenConfig(getState)
         )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to create event.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE, err));
         });
     ;
@@ -71,12 +73,13 @@ export const retrieveActivityEvent = (activityId, activityEventId) => (dispatch,
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch event.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE, err));
         });
     ;
 };
 
-export const updateActivityEvent = (activityId, { id, event_type, date, description}) => (dispatch, getState) => {
+export const updateActivityEvent = (activityId, { id, event_type, date, description }) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE, id));
     axios
         .patch(
@@ -85,13 +88,14 @@ export const updateActivityEvent = (activityId, { id, event_type, date, descript
                 event_type,
                 date,
                 description,
-			},
+            },
             getTokenConfig(getState)
         )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to update event.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE, err));
         });
 };
@@ -108,6 +112,7 @@ export const deleteActivityEvent = (activityId, activityEventId) => (dispatch, g
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityEventId));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to delete event.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE, err));
         });
 };
@@ -124,6 +129,7 @@ export const listActivityEvents = activityId => (dispatch, getState) => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
         })
         .catch(err => {
+            displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch events.");
             dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST, err));
         });
 };

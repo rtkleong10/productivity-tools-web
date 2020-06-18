@@ -1,3 +1,5 @@
+import { displayError } from "./errors"
+
 // ACTIONS
 export const STATUSES = {
     REQUEST: 'REQUEST',
@@ -178,4 +180,11 @@ export const getTokenConfig = getState => {
     };
 
     return config;
+}
+
+export const displayErrorMsgOrUnauth = (err, dispatch, message) => {
+    if (err && err.response && err.response.status === 401)
+        displayError("Your session has expired. Please refresh the page.")(dispatch);
+    else
+        displayError(message)(dispatch);
 }

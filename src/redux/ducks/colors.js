@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_URL } from '../../utils/constants';
-import { getActionTypes, createAction } from './helpers';
+import { getActionTypes, createAction, displayErrorMsgOrUnauth } from './helpers';
 
 // ACTION TYPES
 export const COLORS_ACTIONS = getActionTypes('COLORS');
@@ -43,7 +43,7 @@ export default function colorsReducer(state = initialState, action) {
 }
 
 // OPERATIONS
-export const listColors = () => (dispatch, getState) => {
+export const listColors = () => dispatch => {
 	dispatch(createAction(COLORS_ACTIONS.REQUEST));
 
 	axios
@@ -54,6 +54,7 @@ export const listColors = () => (dispatch, getState) => {
 			dispatch(createAction(COLORS_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch colours.");
 			dispatch(createAction(COLORS_ACTIONS.FAILURE, err));
 		});
 };

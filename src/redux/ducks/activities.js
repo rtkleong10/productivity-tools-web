@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_URL } from '../../utils/constants';
-import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig } from './helpers';
+import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig, displayErrorMsgOrUnauth } from './helpers';
 
 export const ENTITY_NAME = 'activities';
 
@@ -31,6 +31,7 @@ export const createActivity = ({ title, description, frequency, color }) => (dis
 			}));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to create activity.");
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.CREATE, err));
 		});
 	;
@@ -48,6 +49,7 @@ export const retrieveActivity = activityId => (dispatch, getState) => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch activity.");
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.RETRIEVE, err));
 		});
 	;
@@ -71,6 +73,7 @@ export const updateActivity = ({ id, title, description, frequency, color }) => 
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to update activity.");
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.UPDATE, err));
 		});
 };
@@ -87,6 +90,7 @@ export const deleteActivity = activityId => (dispatch, getState) => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityId));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to delete activity.");
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.DELETE, err));
 		});
 };
@@ -103,6 +107,7 @@ export const listActivities = () => (dispatch, getState) => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch activities.");
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.FAILURE, METHODS.LIST, err));
 		});
 };

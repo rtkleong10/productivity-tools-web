@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 import { API_URL } from '../../utils/constants';
-import { getActionTypes, createAction } from './helpers';
+import { getActionTypes, createAction, displayErrorMsgOrUnauth } from './helpers';
 
 // ACTION TYPES
 export const TIMEZONES_ACTIONS = getActionTypes('TIMEZONES');
@@ -43,7 +43,7 @@ export default function timezonesReducer(state = initialState, action) {
 }
 
 // OPERATIONS
-export const listTimezones = () => (dispatch, getState) => {
+export const listTimezones = () => dispatch => {
 	dispatch(createAction(TIMEZONES_ACTIONS.REQUEST));
 
 	axios
@@ -54,6 +54,7 @@ export const listTimezones = () => (dispatch, getState) => {
 			dispatch(createAction(TIMEZONES_ACTIONS.SUCCESS, res.data));
 		})
 		.catch(err => {
+			displayErrorMsgOrUnauth(err, dispatch, "Unable to fetch timezones.");
 			dispatch(createAction(TIMEZONES_ACTIONS.FAILURE, err));
 		});
 };

@@ -8,6 +8,7 @@ import NotFoundPage from '../NotFoundPage';
 import { GUEST_AUTH_ROUTES, USER_AUTH_ROUTES } from '../../auth/routes';
 import DAYS_SINCE_ROUTES from '../../days-since/routes';
 import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
+import Errors from '../Errors';
 
 const RedirectToNext = props => {
 	const next = new URLSearchParams(props.location.search).get("next");
@@ -39,6 +40,7 @@ export class AppRouter extends Component {
 		if (!accessToken || loginError) {
 			return (
 				<BrowserRouter>
+					<Errors />
 					<Switch>
 						{
 							GUEST_AUTH_ROUTES.map((route, i) => <Route key={i} {...route} />)
@@ -65,6 +67,7 @@ export class AppRouter extends Component {
 
 			return (
 				<BrowserRouter>
+					<Errors />
 					<Switch>
 						<Route
 							path="/"
