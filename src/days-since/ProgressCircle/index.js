@@ -37,7 +37,7 @@ export default function ProgressCircle(props) {
 
 	const daysLeft = frequency - days_since;
 	const clockDisplay = getClockDisplay(daysLeft);
-	const percentage = days_since/ frequency;
+	const percentage = days_since / frequency;
 
 	useEffect(() => {
 		let canvas = canvasRef.current;
@@ -89,7 +89,7 @@ export default function ProgressCircle(props) {
 	if (daysLeft >= 0) {
 		return (
 			<div className="progress-circle">
-				<canvas className="outer-circle" ref={canvasRef} height="100px" width="100px"></canvas>
+				<canvas className="outer-circle" ref={canvasRef} height="200px" width="200px"></canvas>
 				{innerCircle}
 			</div >
 		)
