@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import Loader from '../../components/Loader';
@@ -39,7 +39,7 @@ export class AppRouter extends Component {
 
 		if (!accessToken || loginError) {
 			return (
-				<BrowserRouter>
+				<Router>
 					<Errors />
 					<Switch>
 						{
@@ -56,7 +56,7 @@ export class AppRouter extends Component {
 							to="/login"
 						/>
 					</Switch>
-				</BrowserRouter>
+				</Router>
 			);
 
 		} else {
@@ -66,7 +66,7 @@ export class AppRouter extends Component {
 			];
 
 			return (
-				<BrowserRouter>
+				<Router>
 					<Errors />
 					<Switch>
 						<Route
@@ -102,7 +102,7 @@ export class AppRouter extends Component {
 							to="/not-found"
 						/>
 					</Switch>
-				</BrowserRouter>
+				</Router>
 			)
 		}
 	}
