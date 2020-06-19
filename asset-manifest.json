@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/productivity-tools-web/static/css/main.1f78fc2d.chunk.css",
+    "main.css": "/productivity-tools-web/static/css/main.1c700d2d.chunk.css",
     "main.js": "/productivity-tools-web/static/js/main.e5ddf36a.chunk.js",
     "main.js.map": "/productivity-tools-web/static/js/main.e5ddf36a.chunk.js.map",
     "runtime-main.js": "/productivity-tools-web/static/js/runtime-main.d8d21f52.js",
@@ -9,10 +9,10 @@
     "static/js/2.d218d3e6.chunk.js": "/productivity-tools-web/static/js/2.d218d3e6.chunk.js",
     "static/js/2.d218d3e6.chunk.js.map": "/productivity-tools-web/static/js/2.d218d3e6.chunk.js.map",
     "index.html": "/productivity-tools-web/index.html",
-    "precache-manifest.325d4655bebcc8e89ae0d8a1a67c8980.js": "/productivity-tools-web/precache-manifest.325d4655bebcc8e89ae0d8a1a67c8980.js",
+    "precache-manifest.ca194bbf9f12470af12eaa61b4a086cb.js": "/productivity-tools-web/precache-manifest.ca194bbf9f12470af12eaa61b4a086cb.js",
     "service-worker.js": "/productivity-tools-web/service-worker.js",
     "static/css/2.c6231af7.chunk.css.map": "/productivity-tools-web/static/css/2.c6231af7.chunk.css.map",
-    "static/css/main.1f78fc2d.chunk.css.map": "/productivity-tools-web/static/css/main.1f78fc2d.chunk.css.map",
+    "static/css/main.1c700d2d.chunk.css.map": "/productivity-tools-web/static/css/main.1c700d2d.chunk.css.map",
     "static/js/2.d218d3e6.chunk.js.LICENSE.txt": "/productivity-tools-web/static/js/2.d218d3e6.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/productivity-tools-web/static/media/futura-medium-01-webfont.87da75bf.woff",
     "static/media/empty.svg": "/productivity-tools-web/static/media/empty.ca39146a.svg",
@@ -22,7 +22,7 @@
     "static/js/runtime-main.d8d21f52.js",
     "static/css/2.c6231af7.chunk.css",
     "static/js/2.d218d3e6.chunk.js",
-    "static/css/main.1f78fc2d.chunk.css",
+    "static/css/main.1c700d2d.chunk.css",
     "static/js/main.e5ddf36a.chunk.js"
   ]
 }
