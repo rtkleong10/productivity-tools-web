@@ -108,6 +108,8 @@ export class EventList extends Component {
 		if (!activityEvents || activityEventsError)
 			return <Redirect to="/days-since" />;
 
+		activityEvents.sort((a, b) => moment(a.date, "YYYY-MM-DD").toDate() - moment(b.date, "YYYY-MM-DD").toDate()).reverse();
+
 		return (
 			<div>
 				<h2>Events</h2>
