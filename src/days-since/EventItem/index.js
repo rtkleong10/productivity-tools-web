@@ -17,6 +17,7 @@ export default function EventItem(props) {
 			description,
 		},
 		event,
+		isEditable,
 		openEditModal,
 		openDeleteModal,
 	} = props;
@@ -41,14 +42,17 @@ export default function EventItem(props) {
 
 	return (
 		<div key={id} className="event-item">
-			<div>
+			<div className="mb-n10">
 				<p>{eventDisplay} on {dateStr}</p>
 				<p className="small">{getTextWithBrs(description)}</p>
 			</div>
-			<div className="btn-group">
-				<Button icon={faEdit} color="green" size="sm" onClick={() => openEditModal(event)} />
-				<Button icon={faTrash} color="red" size="sm" onClick={() => openDeleteModal(event)} />
-			</div>
+			{
+				isEditable &&
+				<div className="btn-group mt-20">
+					<Button icon={faEdit} color="green" size="sm" onClick={() => openEditModal(event)} />
+					<Button icon={faTrash} color="red" size="sm" onClick={() => openDeleteModal(event)} />
+				</div>
+			}
 		</div>
 	)
 }

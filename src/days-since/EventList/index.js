@@ -20,6 +20,7 @@ export class EventList extends Component {
 		[MODAL_TYPES.CREATE]: false,
 		[MODAL_TYPES.EDIT]: false,
 		[MODAL_TYPES.DELETE]: false,
+		isEditable: false,
 	}
 
 	constructor(props) {
@@ -94,6 +95,10 @@ export class EventList extends Component {
 			activityEventsError,
 		} = this.props;
 
+		const {
+			isEditable
+		} = this.state;
+
 		if (activityEventsLoading)
 			return (
 				<div>
@@ -110,8 +115,13 @@ export class EventList extends Component {
 		return (
 			<div>
 				<h2>Events</h2>
-				<div className="mb-20">
+				<div className="btn-group mb-20">
 					<Button icon={faPlus} color="blue" onClick={() => this.openModal(MODAL_TYPES.CREATE)}>Create Event</Button>
+					{
+						isEditable
+							? <Button className="ml-auto mr-0" color="faded-grey" onClick={() => this.setState({ isEditable: false })}>Done</Button>
+							: <Button className="ml-auto mr-0" color="green" onClick={() => this.setState({ isEditable: true })}>Edit</Button>
+					}
 				</div>
 				{
 					activityEvents.length !== 0
@@ -119,7 +129,9 @@ export class EventList extends Component {
 							{
 								activityEvents.map(event => (
 									<EventItem
+										key={event.id}
 										event={event}
+										isEditable={isEditable}
 										openEditModal={event => this.openModal(MODAL_TYPES.EDIT, event)}
 										openDeleteModal={event => this.openModal(MODAL_TYPES.DELETE, event)}
 									/>
