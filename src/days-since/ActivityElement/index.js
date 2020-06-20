@@ -55,8 +55,8 @@ export function ActivityElement(props) {
 	
 	var eventDisplay = (
 		<div>
-			<Button icon={faCheck} className="mr-10" onClick={() => performEvent(id, EVENT_TYPES.COMPLETED)} ariaLabel="Complete" />
-			<Button color="white" icon={faForward} onClick={() => performEvent(id, EVENT_TYPES.SKIPPED)} ariaLabel="Skip" />
+			<Button icon={faCheck} className="mr-10" onClick={() => performEvent(id, EVENT_TYPES.COMPLETED)} aria-label="Complete" />
+			<Button color="white" icon={faForward} onClick={() => performEvent(id, EVENT_TYPES.SKIPPED)} aria-label="Skip" />
 		</div>
 	);
 
