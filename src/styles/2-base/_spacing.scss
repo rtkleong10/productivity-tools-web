@@ -3,6 +3,30 @@
 }
 
 @each $prop, $abbrev in (margin: m, padding: p) {
+    .#{$abbrev}-auto {
+        #{$prop}: auto !important;
+    }
+
+    .#{$abbrev}t-auto,
+    .#{$abbrev}y-auto {
+        #{$prop}-top: auto !important;
+    }
+
+    .#{$abbrev}r-auto,
+    .#{$abbrev}x-auto {
+        #{$prop}-right: auto !important;
+    }
+
+    .#{$abbrev}b-auto,
+    .#{$abbrev}y-auto {
+        #{$prop}-bottom: auto !important;
+    }
+
+    .#{$abbrev}l-auto,
+    .#{$abbrev}x-auto {
+        #{$prop}-left: auto !important;
+    }
+
     @for $i from 0 through 10 {
         $size: $i * 5;
 
@@ -58,38 +82,62 @@
 }
 
 @each $breakpoint in map-keys($grid-breakpoints) {
-	@include media-breakpoint-up($breakpoint) {
-		$infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+    @include media-breakpoint-up($breakpoint) {
+        $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
 
-		@each $prop, $abbrev in (margin: m, padding: p) {
-			@for $i from 0 through 10 {
-				$size: $i * 10;
+        @each $prop, $abbrev in (margin: m, padding: p) {
+            .#{$abbrev}#{$infix}-auto {
+                #{$prop}: auto !important;
+            }
 
-				.#{$abbrev}#{$infix}-#{$size} {
-					#{$prop}: #{$size}px !important;
-				}
+            .#{$abbrev}t#{$infix}-auto,
+            .#{$abbrev}y#{$infix}-auto {
+                #{$prop}-top: auto !important;
+            }
 
-				.#{$abbrev}t#{$infix}-#{$size},
-				.#{$abbrev}y#{$infix}-#{$size} {
-					#{$prop}-top: #{$size}px !important;
-				}
+            .#{$abbrev}r#{$infix}-auto,
+            .#{$abbrev}x#{$infix}-auto {
+                #{$prop}-right: auto !important;
+            }
 
-				.#{$abbrev}r#{$infix}-#{$size},
-				.#{$abbrev}x#{$infix}-#{$size} {
-					#{$prop}-right: #{$size}px !important;
-				}
+            .#{$abbrev}b#{$infix}-auto,
+            .#{$abbrev}y#{$infix}-auto {
+                #{$prop}-bottom: auto !important;
+            }
 
-				.#{$abbrev}b#{$infix}-#{$size},
-				.#{$abbrev}y#{$infix}-#{$size} {
-					#{$prop}-bottom: #{$size}px !important;
-				}
+            .#{$abbrev}l#{$infix}-auto,
+            .#{$abbrev}x#{$infix}-auto {
+                #{$prop}-left: auto !important;
+            }
 
-				.#{$abbrev}l#{$infix}-#{$size},
-				.#{$abbrev}x#{$infix}-#{$size} {
-					#{$prop}-left: #{$size}px !important;
-				}
+            @for $i from 0 through 10 {
+                $size: $i * 5;
 
-				@if $size != 0 {
+                .#{$abbrev}#{$infix}-#{$size} {
+                    #{$prop}: #{$size}px !important;
+                }
+
+                .#{$abbrev}t#{$infix}-#{$size},
+                .#{$abbrev}y#{$infix}-#{$size} {
+                    #{$prop}-top: #{$size}px !important;
+                }
+
+                .#{$abbrev}r#{$infix}-#{$size},
+                .#{$abbrev}x#{$infix}-#{$size} {
+                    #{$prop}-right: #{$size}px !important;
+                }
+
+                .#{$abbrev}b#{$infix}-#{$size},
+                .#{$abbrev}y#{$infix}-#{$size} {
+                    #{$prop}-bottom: #{$size}px !important;
+                }
+
+                .#{$abbrev}l#{$infix}-#{$size},
+                .#{$abbrev}x#{$infix}-#{$size} {
+                    #{$prop}-left: #{$size}px !important;
+                }
+
+                @if $size != 0 {
                     .m#{$infix}-n#{$size} {
                         margin: -#{$size}px !important;
                     }
@@ -113,7 +161,7 @@
                         margin-left: -#{$size}px !important;
                     }
                 }
-			}
-		}
-	}
+            }
+        }
+    }
 }
