@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "7136804fc0c33838013ae4db30d7c103",
+    "revision": "739a99988ac77a05efafeeeb00ee9952",
     "url": "/productivity-tools-web/index.html"
   },
   {
@@ -8,8 +8,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/productivity-tools-web/static/css/2.c6231af7.chunk.css"
   },
   {
-    "revision": "0b8b11d0f4b5f22e70d6",
-    "url": "/productivity-tools-web/static/css/main.797dc45e.chunk.css"
+    "revision": "08609b20d5ff6875d526",
+    "url": "/productivity-tools-web/static/css/main.8a7d0f7c.chunk.css"
   },
   {
     "revision": "45e3a549532a588cba65",
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/productivity-tools-web/static/js/2.ce0a92b9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0b8b11d0f4b5f22e70d6",
-    "url": "/productivity-tools-web/static/js/main.2fbcb484.chunk.js"
+    "revision": "08609b20d5ff6875d526",
+    "url": "/productivity-tools-web/static/js/main.df8e2d26.chunk.js"
   },
   {
     "revision": "e62bc5a23bf12159340c",
