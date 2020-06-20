@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5a1a2f4ba6aea5e99f7a50d20d82ec4e",
+    "revision": "7136804fc0c33838013ae4db30d7c103",
     "url": "/productivity-tools-web/index.html"
   },
   {
-    "revision": "c57fdde8618e3bba9900",
+    "revision": "45e3a549532a588cba65",
     "url": "/productivity-tools-web/static/css/2.c6231af7.chunk.css"
   },
   {
-    "revision": "3146cd0c7f49c2c871b5",
-    "url": "/productivity-tools-web/static/css/main.1c700d2d.chunk.css"
+    "revision": "0b8b11d0f4b5f22e70d6",
+    "url": "/productivity-tools-web/static/css/main.797dc45e.chunk.css"
   },
   {
-    "revision": "c57fdde8618e3bba9900",
-    "url": "/productivity-tools-web/static/js/2.d218d3e6.chunk.js"
+    "revision": "45e3a549532a588cba65",
+    "url": "/productivity-tools-web/static/js/2.ce0a92b9.chunk.js"
   },
   {
     "revision": "6b3248a1692933689dcb27b9e1ed5092",
-    "url": "/productivity-tools-web/static/js/2.d218d3e6.chunk.js.LICENSE.txt"
+    "url": "/productivity-tools-web/static/js/2.ce0a92b9.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "3146cd0c7f49c2c871b5",
-    "url": "/productivity-tools-web/static/js/main.e5ddf36a.chunk.js"
+    "revision": "0b8b11d0f4b5f22e70d6",
+    "url": "/productivity-tools-web/static/js/main.2fbcb484.chunk.js"
   },
   {
     "revision": "e62bc5a23bf12159340c",
