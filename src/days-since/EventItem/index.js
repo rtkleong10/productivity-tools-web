@@ -49,8 +49,8 @@ export default function EventItem(props) {
 			{
 				isEditable &&
 				<div className="btn-group mt-20">
-					<Button icon={faEdit} color="green" size="sm" onClick={() => openEditModal(event)} />
-					<Button icon={faTrash} color="red" size="sm" onClick={() => openDeleteModal(event)} />
+					<Button icon={faEdit} color="green" size="sm" onClick={() => openEditModal(event)} ariaLabel="Edit" />
+					<Button icon={faTrash} color="red" size="sm" onClick={() => openDeleteModal(event)} arialabel="Delete" />
 				</div>
 			}
 		</div>
