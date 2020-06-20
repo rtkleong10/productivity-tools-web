@@ -2,20 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faPlus, faCheck, faForward, faQuestion, faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
-import { EVENT_TYPES } from '../utils';
 import { MODAL_TYPES } from '../../utils/constants';
-import { getTextWithBrs } from '../../utils/text';
 import { createActivityEvent, updateActivityEvent, deleteActivityEvent, listActivityEvents, selectActivityEvents, selectActivityEventsLoading, selectActivityEventsError } from '../../redux/ducks/activityEvents';
-import './index.scss';
 import EventForm from '../EventForm';
 import DeleteForm from '../../components/DeleteForm';
 import Modal from '../../components/Modal';
 import empty from './empty.svg';
+import EventItem from '../EventItem';
 
 export class EventList extends Component {
 	state = {
@@ -120,45 +117,13 @@ export class EventList extends Component {
 					activityEvents.length !== 0
 						? <div className="box">
 							{
-								activityEvents.map(event => {
-									const {
-										id,
-										event_type,
-										date,
-										description,
-									} = event;
-
-									var eventDisplay = "";
-
-									switch (event_type) {
-										case EVENT_TYPES.COMPLETED:
-											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faCheck} />Completed</>
-											break;
-
-										case EVENT_TYPES.SKIPPED:
-											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faForward} />Skipped</>;
-											break;
-
-										default:
-											eventDisplay = <><FontAwesomeIcon className="mr-10" icon={faQuestion} />Unknown event</>;
-											break;
-									}
-
-									const dateStr = moment(date).format('D MMMM YYYY');;
-
-									return (
-										<div key={id} className="event-item">
-											<div>
-												<p>{eventDisplay} on {dateStr}</p>
-												<p className="small">{getTextWithBrs(description)}</p>
-											</div>
-											<div className="btn-group">
-												<Button icon={faEdit} color="green" size="sm" onClick={() => this.openModal(MODAL_TYPES.EDIT, event)} />
-												<Button icon={faTrash} color="red" size="sm" onClick={() => this.openModal(MODAL_TYPES.DELETE, event)} />
-											</div>
-										</div>
-									);
-								})
+								activityEvents.map(event => (
+									<EventItem
+										event={event}
+										openEditModal={event => this.openModal(MODAL_TYPES.EDIT, event)}
+										openDeleteModal={event => this.openModal(MODAL_TYPES.DELETE, event)}
+									/>
+								))
 							}
 						</div>
 						: <div className="center mt-40">
