@@ -77,6 +77,11 @@ export class AppRouter extends Component {
 						{
 							allRoutes.map((route, i) => <Route key={i} {...route} />)
 						}
+						<Route
+							path="/login"
+							exact
+							component={RedirectToNext}
+						/>
 						{
 							GUEST_AUTH_ROUTES.map((route, i) => (
 								<Redirect
@@ -87,11 +92,6 @@ export class AppRouter extends Component {
 								/>
 							))
 						}
-						<Route
-							path="/login"
-							exact
-							component={RedirectToNext}
-						/>
 						<Route
 							path="/not-found"
 							exact
