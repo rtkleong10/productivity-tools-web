@@ -7,6 +7,7 @@ import timezonesReducer from './ducks/timezones';
 import profileReducer from './ducks/profile';
 import activitiesReducer from './ducks/activities';
 import activityEventsReducer from './ducks/activityEvents';
+import activityStatisticsReducer from './ducks/activityStatistics';
 
 export default combineReducers({
 	errorsReducer,
@@ -16,4 +17,5 @@ export default combineReducers({
 	profileReducer,
 	activitiesReducer,
 	activityEventsReducer,
+	activityStatisticsReducer,
 });

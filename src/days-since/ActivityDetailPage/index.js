@@ -16,6 +16,7 @@ import DeleteForm from '../../components/DeleteForm';
 import { MODAL_TYPES } from '../../utils/constants';
 import { getTextWithBrs } from '../../utils/text';
 import './index.scss';
+import ActivityStatistics from '../ActivityStatistics';
 
 export class ActivityDetailPage extends Component {
 	state = {
@@ -50,7 +51,7 @@ export class ActivityDetailPage extends Component {
 			[MODAL_TYPES.EDIT]: false,
 		});
 
-		this.props.updateActivity({...this.props.activity, ...activity});
+		this.props.updateActivity({ ...this.props.activity, ...activity });
 	}
 
 	handleDeleteActivity = isConfirm => {
@@ -80,16 +81,16 @@ export class ActivityDetailPage extends Component {
 
 		if (activityLoading || activityId !== params.activityId)
 			return <Loader />;
-		
+
 		if (!activity || activityError)
 			return <Redirect to="/days-since" />;
-		
+
 		const {
 			title,
 			description,
 			frequency,
 		} = activity;
-		
+
 		return (
 			<div className="container">
 				<Helmet>
@@ -103,15 +104,18 @@ export class ActivityDetailPage extends Component {
 					]} />
 				<div className="grid activity-detail">
 					<div>
-						<div className="mb-20">
-							<h1>{title}</h1>
-							{description && <p>{getTextWithBrs(description)}</p>}
-							{frequency && <p>Frequency: {getFrequencyDisplay(frequency)}</p>}
+						<div className="mb-30">
+							<div className="mb-20">
+								<h1>{title}</h1>
+								{description && <p>{getTextWithBrs(description)}</p>}
+								{frequency && <p>Frequency: {getFrequencyDisplay(frequency)}</p>}
+							</div>
+							<div className="btn-group">
+								<Button icon={faEdit} color="green" onClick={() => this.openModal(MODAL_TYPES.EDIT)}>Edit</Button>
+								<Button icon={faTrash} color="red" onClick={() => this.openModal(MODAL_TYPES.DELETE)}>Delete</Button>
+							</div>
 						</div>
-						<div className="btn-group">
-							<Button icon={faEdit} color="green" onClick={() => this.openModal(MODAL_TYPES.EDIT)}>Edit</Button>
-							<Button icon={faTrash} color="red" onClick={() => this.openModal(MODAL_TYPES.DELETE)}>Delete</Button>
-						</div>
+						<ActivityStatistics activityId={activityId} />
 					</div>
 					<EventList
 						activityId={activityId}

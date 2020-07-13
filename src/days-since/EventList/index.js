@@ -13,6 +13,7 @@ import DeleteForm from '../../components/DeleteForm';
 import Modal from '../../components/Modal';
 import empty from './empty.svg';
 import EventItem from '../EventItem';
+import { retrieveActivityStatistics } from '../../redux/ducks/activityStatistics';
 
 export class EventList extends Component {
 	state = {
@@ -52,40 +53,47 @@ export class EventList extends Component {
 		const {
 			activityId,
 			createActivityEvent,
+			retrieveActivityStatistics,
 		} = this.props;
 
 		this.setState({
 			[MODAL_TYPES.CREATE]: false,
 		});
 
-		createActivityEvent(activityId, event);
+		createActivityEvent(activityId, event)
+			.then(() => retrieveActivityStatistics(activityId));
 	}
 
 	handleEditEvent = event => {
 		const {
 			activityId,
 			updateActivityEvent,
+			retrieveActivityStatistics,
 		} = this.props;
 
 		this.setState({
 			[MODAL_TYPES.EDIT]: false,
 		});
 
-		updateActivityEvent(activityId, { ...this.state.modalEvent, ...event });
+		updateActivityEvent(activityId, { ...this.state.modalEvent, ...event })
+			.then(() => retrieveActivityStatistics(activityId));
 	}
 
 	handleDeleteEvent = isConfirm => {
 		const {
 			activityId,
 			deleteActivityEvent,
+			retrieveActivityStatistics,
 		} = this.props;
 
 		this.setState({
 			[MODAL_TYPES.DELETE]: false,
 		});
 
-		if (isConfirm)
-			deleteActivityEvent(activityId, this.state.modalEvent.id);
+		if (isConfirm) {
+			deleteActivityEvent(activityId, this.state.modalEvent.id)
+				.then(() => retrieveActivityStatistics(activityId));
+		}
 	}
 
 	render() {
@@ -184,6 +192,7 @@ const dispatchers = {
 	updateActivityEvent,
 	deleteActivityEvent,
 	listActivityEvents,
+	retrieveActivityStatistics,
 };
 
 export default connect(mapStateToProps, dispatchers)(EventList);

@@ -32,7 +32,7 @@ export default class EventForm extends Component {
 		} else {
 			this.setState({
 				event_type: EVENT_TYPES.COMPLETED,
-				date: new Date(),
+				date: null,
 				description: "",
 			});
 		}
