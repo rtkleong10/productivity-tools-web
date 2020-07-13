@@ -14,6 +14,7 @@
 
 	.DayPickerInput {
 		display: block;
+		caret-color: transparent !important;
 	
 		&, .DayPicker {
 			font: $p-font;
@@ -41,7 +42,7 @@
 		background-color: $light-blue;
 	}
 	
-	.DayPicker-Day--today {
+	.DayPicker-Day--today:not(.DayPicker-Day--disabled) {
 		color: $blue;
 	}
 }

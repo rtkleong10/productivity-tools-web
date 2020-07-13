@@ -35,7 +35,7 @@ export default function DatePicker(props) {
 				onDayChange={onChange}
 				inputProps={{
 					required,
-					readOnly: true,
+					onKeyDown: e => { e.preventDefault()},
 				}}
 				{...rest}
 			/>
