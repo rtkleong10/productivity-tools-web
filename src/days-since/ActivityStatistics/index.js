@@ -19,7 +19,12 @@ export function ActivityStatistics(props) {
 	}, [retrieveActivityStatistics, activityId]);
 
 	if (activityStatisticsLoading || !activityStatistics || activityStatisticsError)
-		return <Loader />;
+		return (
+			<div>
+				<h2>Statistics</h2>
+				<Loader />
+			</div>
+		);
 
 	const {
 		average_frequency,
