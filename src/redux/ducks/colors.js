@@ -35,7 +35,7 @@ export default function colorsReducer(state = initialState, action) {
 				loading: false,
 				error: action.payload,
 			}
-	
+
 		default:
 			return state;
 	}
@@ -46,10 +46,9 @@ export default function colorsReducer(state = initialState, action) {
 export const listColors = () => dispatch => {
 	dispatch(createAction(COLORS_ACTIONS.REQUEST));
 
-	axios
-		.get(
-			`${API_URL}/colors/`,
-		)
+	return axios.get(
+		`${API_URL}/colors/`,
+	)
 		.then(res => {
 			dispatch(createAction(COLORS_ACTIONS.SUCCESS, res.data));
 		})

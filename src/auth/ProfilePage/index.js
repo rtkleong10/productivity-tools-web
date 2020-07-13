@@ -17,7 +17,9 @@ export function ProfilePage(props) {
 		profileError,
 	} = props;
 
-	useEffect(retrieveProfile, [retrieveProfile]);
+	useEffect(() => {
+		retrieveProfile();
+	}, [retrieveProfile]);
 
 	if (profileLoading)
 		return (

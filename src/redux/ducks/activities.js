@@ -13,17 +13,16 @@ export default activitiesReducer;
 export const createActivity = ({ title, description, frequency, color }) => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-	axios
-		.post(
-			`${API_URL}/${ENTITY_NAME}/`,
-			{
-				title,
-				description,
-				frequency,
-				color,
-			},
-			getTokenConfig(getState)
-		)
+	return axios.post(
+		`${API_URL}/${ENTITY_NAME}/`,
+		{
+			title,
+			description,
+			frequency,
+			color,
+		},
+		getTokenConfig(getState)
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, {
 				...res.data,
@@ -40,11 +39,10 @@ export const createActivity = ({ title, description, frequency, color }) => (dis
 export const retrieveActivity = activityId => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE, activityId));
 
-	axios
-		.get(
-			`${API_URL}/${ENTITY_NAME}/${activityId}/`,
-			getTokenConfig(getState)
-		)
+	return axios.get(
+		`${API_URL}/${ENTITY_NAME}/${activityId}/`,
+		getTokenConfig(getState)
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
 		})
@@ -57,18 +55,17 @@ export const retrieveActivity = activityId => (dispatch, getState) => {
 
 export const updateActivity = ({ id, title, description, frequency, color }) => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE, id));
-	
-	axios
-		.patch(
-			`${API_URL}/${ENTITY_NAME}/${id}/`,
-			{
-				title,
-				description,
-				frequency,
-				color,
-			},
-			getTokenConfig(getState)
-		)
+
+	return axios.patch(
+		`${API_URL}/${ENTITY_NAME}/${id}/`,
+		{
+			title,
+			description,
+			frequency,
+			color,
+		},
+		getTokenConfig(getState)
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
 		})
@@ -81,11 +78,10 @@ export const updateActivity = ({ id, title, description, frequency, color }) => 
 export const deleteActivity = activityId => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
 
-	axios
-		.delete(
-			`${API_URL}/${ENTITY_NAME}/${activityId}/`,
-			getTokenConfig(getState)
-		)
+	return axios.delete(
+		`${API_URL}/${ENTITY_NAME}/${activityId}/`,
+		getTokenConfig(getState)
+	)
 		.then(() => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityId));
 		})
@@ -98,11 +94,10 @@ export const deleteActivity = activityId => (dispatch, getState) => {
 export const listActivities = () => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
 
-	axios
-		.get(
-			`${API_URL}/${ENTITY_NAME}/`,
-			getTokenConfig(getState),
-		)
+	return axios.get(
+		`${API_URL}/${ENTITY_NAME}/`,
+		getTokenConfig(getState),
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
 		})

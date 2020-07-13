@@ -11,7 +11,9 @@ export function TimezoneSelect(props) {
 		listTimezones,
 	} = props;
 
-	useEffect(listTimezones, [listTimezones]);
+	useEffect(() => {
+		listTimezones()
+	}, [listTimezones]);
 	
 	let timezoneOptions = [];
 	

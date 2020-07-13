@@ -14,14 +14,13 @@ export default activityEventsReducer;
 export const performEvent = (activityId, event_type) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-    axios
-        .post(
-            `${API_URL}/activities/${activityId}/events/`,
-            {
-                event_type,
-            },
-            getTokenConfig(getState)
-        )
+    return axios.post(
+        `${API_URL}/activities/${activityId}/events/`,
+        {
+            event_type,
+        },
+        getTokenConfig(getState)
+    )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
             dispatch(createApiAction(ACTIVITIES_ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, {
@@ -41,16 +40,15 @@ export const performEvent = (activityId, event_type) => (dispatch, getState) => 
 export const createActivityEvent = (activityId, { event_type, date, description }) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.CREATE));
 
-    axios
-        .post(
-            `${API_URL}/activities/${activityId}/events/`,
-            {
-                event_type,
-                date,
-                description,
-            },
-            getTokenConfig(getState)
-        )
+    return axios.post(
+        `${API_URL}/activities/${activityId}/events/`,
+        {
+            event_type,
+            date,
+            description,
+        },
+        getTokenConfig(getState)
+    )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, res.data));
         })
@@ -64,11 +62,10 @@ export const createActivityEvent = (activityId, { event_type, date, description 
 export const retrieveActivityEvent = (activityId, activityEventId) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE, activityEventId));
 
-    axios
-        .get(
-            `${API_URL}/activities/${activityId}/events/${activityEventId}/`,
-            getTokenConfig(getState)
-        )
+    return axios.get(
+        `${API_URL}/activities/${activityId}/events/${activityEventId}/`,
+        getTokenConfig(getState)
+    )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
         })
@@ -81,16 +78,16 @@ export const retrieveActivityEvent = (activityId, activityEventId) => (dispatch,
 
 export const updateActivityEvent = (activityId, { id, event_type, date, description }) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE, id));
-    axios
-        .patch(
-            `${API_URL}/activities/${activityId}/events/${id}/`,
-            {
-                event_type,
-                date,
-                description,
-            },
-            getTokenConfig(getState)
-        )
+
+    return axios.patch(
+        `${API_URL}/activities/${activityId}/events/${id}/`,
+        {
+            event_type,
+            date,
+            description,
+        },
+        getTokenConfig(getState)
+    )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
         })
@@ -103,11 +100,10 @@ export const updateActivityEvent = (activityId, { id, event_type, date, descript
 export const deleteActivityEvent = (activityId, activityEventId) => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.DELETE));
 
-    axios
-        .delete(
-            `${API_URL}/activities/${activityId}/events/${activityEventId}/`,
-            getTokenConfig(getState)
-        )
+    return axios.delete(
+        `${API_URL}/activities/${activityId}/events/${activityEventId}/`,
+        getTokenConfig(getState)
+    )
         .then(() => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.DELETE, activityEventId));
         })
@@ -120,11 +116,10 @@ export const deleteActivityEvent = (activityId, activityEventId) => (dispatch, g
 export const listActivityEvents = activityId => (dispatch, getState) => {
     dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.LIST));
 
-    axios
-        .get(
-            `${API_URL}/activities/${activityId}/events/`,
-            getTokenConfig(getState),
-        )
+    return axios.get(
+        `${API_URL}/activities/${activityId}/events/`,
+        getTokenConfig(getState),
+    )
         .then(res => {
             dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.LIST, res.data));
         })

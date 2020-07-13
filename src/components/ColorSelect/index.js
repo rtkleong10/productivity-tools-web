@@ -31,7 +31,9 @@ export function ColorSelect(props) {
 		listColors,
 	} = props;
 
-	useEffect(listColors, [listColors]);
+	useEffect(() => {
+		listColors()
+	}, [listColors]);
 	
 	let colorOptions = [];
 	

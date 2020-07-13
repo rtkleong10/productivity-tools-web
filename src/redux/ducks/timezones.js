@@ -35,7 +35,7 @@ export default function timezonesReducer(state = initialState, action) {
 				loading: false,
 				error: action.payload,
 			}
-	
+
 		default:
 			return state;
 	}
@@ -46,10 +46,9 @@ export default function timezonesReducer(state = initialState, action) {
 export const listTimezones = () => dispatch => {
 	dispatch(createAction(TIMEZONES_ACTIONS.REQUEST));
 
-	axios
-		.get(
-			`${API_URL}/timezones/`,
-		)
+	return axios.get(
+		`${API_URL}/timezones/`,
+	)
 		.then(res => {
 			dispatch(createAction(TIMEZONES_ACTIONS.SUCCESS, res.data));
 		})

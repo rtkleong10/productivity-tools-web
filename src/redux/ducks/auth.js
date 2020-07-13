@@ -94,7 +94,7 @@ export default function authReducer(state = initialState, action) {
 export const authLogin = ({ username, password }) => dispatch => {
 	dispatch(createAction(LOGIN_ACTIONS.REQUEST));
 
-	axios.post(
+	return axios.post(
 		`${AUTH_URL}/jwt/create/`,
 		{
 			username,
@@ -114,7 +114,7 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
 	dispatch(createAction(LOGIN_ACTIONS.REQUEST));
 	const refreshToken = getState().authReducer.refreshToken;
 
-	axios.post(
+	return axios.post(
 		`${AUTH_URL}/jwt/refresh/`,
 		{
 			refresh: refreshToken,
@@ -135,7 +135,7 @@ export const refreshTokenLogin = () => (dispatch, getState) => {
 export const signup = ({ email, username, password }) => dispatch => {
 	dispatch(createAction(SIGNUP_ACTIONS.REQUEST));
 
-	axios.post(
+	return axios.post(
 		`${AUTH_URL}/users/`,
 		{
 			email,

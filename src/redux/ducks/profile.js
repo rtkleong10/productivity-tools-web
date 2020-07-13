@@ -13,11 +13,10 @@ export default profileReducer;
 export const retrieveProfile = () => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 
-	axios
-		.get(
-			`${API_URL}/${ENTITY_NAME}/`,
-			getTokenConfig(getState)
-		)
+	return axios.get(
+		`${API_URL}/${ENTITY_NAME}/`,
+		getTokenConfig(getState)
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.RETRIEVE, res.data));
 		})
@@ -30,15 +29,14 @@ export const retrieveProfile = () => (dispatch, getState) => {
 
 export const updateProfile = ({ timezone }) => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
-	
-	axios
-		.patch(
-			`${API_URL}/${ENTITY_NAME}/`,
-			{
-				timezone,
-			},
-			getTokenConfig(getState)
-		)
+
+	return axios.patch(
+		`${API_URL}/${ENTITY_NAME}/`,
+		{
+			timezone,
+		},
+		getTokenConfig(getState)
+	)
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.UPDATE, res.data));
 		})
