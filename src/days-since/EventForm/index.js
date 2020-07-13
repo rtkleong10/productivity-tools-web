@@ -74,6 +74,10 @@ export default class EventForm extends Component {
 
 	render() {
 		const {
+			disabledDates,
+		} = this.props;
+
+		const {
 			event_type,
 			date,
 			description,
@@ -97,6 +101,9 @@ export default class EventForm extends Component {
 						value={date}
 						onChange={this.handleDateChange}
 						required
+						dayPickerProps={{
+							disabledDays: disabledDates,
+						}}
 					/>
 				</div>
 				<div className="form-group">
@@ -116,4 +123,5 @@ export default class EventForm extends Component {
 
 EventForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
+	disabledDates: PropTypes.array.isRequired,
 };

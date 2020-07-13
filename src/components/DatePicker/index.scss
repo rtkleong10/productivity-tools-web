@@ -32,10 +32,6 @@
 	
 	.DayPicker-Day {
 		border-radius: 5px;
-	
-		&:hover {
-			background-color: $faded-grey;
-		}
 	}
 	.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
 		background-color: $blue;

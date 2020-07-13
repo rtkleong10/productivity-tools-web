@@ -96,6 +96,10 @@ export class EventList extends Component {
 		} = this.props;
 
 		const {
+			modalEvent
+		} = this.state;
+
+		const {
 			isEditable
 		} = this.state;
 
@@ -148,14 +152,14 @@ export class EventList extends Component {
 					isVisible={this.state[MODAL_TYPES.CREATE]}
 					onVisibilityChange={visibility => this.handleVisibilityChange(MODAL_TYPES.CREATE, visibility)}
 				>
-					<EventForm onSubmit={this.handleCreateEvent} ref={createForm => this.createFormRef = createForm} />
+					<EventForm onSubmit={this.handleCreateEvent} ref={createForm => this.createFormRef = createForm} disabledDates={activityEvents.map(event => moment(event.date, "YYYY-MM-DD").toDate())} />
 				</Modal>
 				<Modal
 					title="Edit Event"
 					isVisible={this.state[MODAL_TYPES.EDIT]}
 					onVisibilityChange={visibility => this.handleVisibilityChange(MODAL_TYPES.EDIT, visibility)}
 				>
-					<EventForm onSubmit={this.handleEditEvent} ref={editForm => this.editFormRef = editForm} />
+					<EventForm onSubmit={this.handleEditEvent} ref={editForm => this.editFormRef = editForm} disabledDates={activityEvents.filter(event => !modalEvent || event.id !== modalEvent.id).map(event => moment(event.date, "YYYY-MM-DD").toDate())} />
 				</Modal>
 				<Modal
 					title="Delete Event"
