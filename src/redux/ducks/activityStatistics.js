@@ -47,7 +47,7 @@ export const retrieveActivityStatistics = activityId => (dispatch, getState) => 
 	dispatch(createAction(ACTIVITYSTATS_ACTIONS.REQUEST));
 
 	return axios.get(
-		`${API_URL}/activities/${activityId}/statistics`,
+		`${API_URL}/activities/${activityId}/statistics/`,
 		getTokenConfig(getState)
 	)
 		.then(res => {
