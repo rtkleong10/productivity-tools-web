@@ -5,7 +5,7 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
-import ActivityElement from '../ActivityElement';
+import ActivityItem from '../ActivityItem';
 import { listActivities, selectActivities, selectActivitiesLoading, selectActivitiesError } from '../../redux/ducks/activities';
 import { listColors, selectColors, selectColorsLoading, selectColorsError } from '../../redux/ducks/colors'; 
 import './index.scss';
@@ -19,7 +19,7 @@ export class ActivityListPage extends Component {
 		props.listColors();
 	}
 
-	mapActivitiesToActivityElements = activities => {
+	mapActivitiesToActivityItems = activities => {
 		return activities.map(activity => {
 			const {
 				id,
@@ -32,7 +32,7 @@ export class ActivityListPage extends Component {
 			} = activity;
 
 			return (
-				<ActivityElement
+				<ActivityItem
 					key={id}
 					id={id}
 					title={title}
@@ -93,7 +93,7 @@ export class ActivityListPage extends Component {
 					<div>
 						<h3>With Frequency</h3>
 						<div className="grid activity-list">
-							{this.mapActivitiesToActivityElements(activitiesSplitByFrequency.true)}
+							{this.mapActivitiesToActivityItems(activitiesSplitByFrequency.true)}
 						</div>
 					</div>
 				}
@@ -102,7 +102,7 @@ export class ActivityListPage extends Component {
 					<div>
 						<h3>Without Frequency</h3>
 						<div className="grid activity-list">
-							{this.mapActivitiesToActivityElements(activitiesSplitByFrequency.false)}
+							{this.mapActivitiesToActivityItems(activitiesSplitByFrequency.false)}
 						</div>
 					</div>
 				}

@@ -41,7 +41,7 @@ function getDaysSinceDisplay(days_since) {
 		return `${Math.floor(days_since / 7)} weeks ago`;
 }
 
-export function ActivityElement(props) {
+export function ActivityItem(props) {
 	const {
 		id,
 		title,
@@ -108,7 +108,7 @@ export function ActivityElement(props) {
 	}
 }
 
-ActivityElement.propTypes = {
+ActivityItem.propTypes = {
 	id: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	days_since: PropTypes.number.isRequired,
@@ -122,4 +122,4 @@ const dispatchers = {
 	performEvent,
 };
 
-export default connect(() => ({}), dispatchers)(ActivityElement);
+export default connect(() => ({}), dispatchers)(ActivityItem);
