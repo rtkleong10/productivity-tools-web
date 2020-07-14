@@ -81,9 +81,9 @@ export function ActivityItem(props) {
 				<ProgressCircle days_since={days_since} frequency={frequency} color={color} />
 				<div>
 					<div className="mb-10">
-						<h3 className="activity-title mb-0">
+						<h4 className="activity-title mb-0">
 							<Link to={`/days-since/${id}`}>{title}</Link>
-						</h3>
+						</h4>
 						<p>{getFrequencyDisplay(frequency)} • {getLastEventTypeDisplay(last_event_type)} {getDaysSinceDisplay(days_since)}</p>
 					</div>
 					{eventDisplay}
