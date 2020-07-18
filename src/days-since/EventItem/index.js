@@ -7,6 +7,7 @@ import Button from '../../components/Button';
 import { EVENT_TYPES } from '../utils';
 import { getTextWithBrs } from '../../utils/text';
 import './index.scss';
+import FadeTransition from '../../components/FadeTransition';
 
 export const EventItem = forwardRef((props, ref) => {
 	const {
@@ -45,13 +46,12 @@ export const EventItem = forwardRef((props, ref) => {
 				<p>{eventDisplay} on {dateStr}</p>
 				<p className="small">{getTextWithBrs(description)}</p>
 			</div>
-			{
-				isEditable &&
+			<FadeTransition in={isEditable}>
 				<div className="btn-group mt-20">
 					<Button icon={faEdit} color="green" size="sm" onClick={() => openEditModal(event)} aria-label="Edit" />
 					<Button icon={faTrash} color="red" size="sm" onClick={() => openDeleteModal(event)} aria-label="Delete" />
 				</div>
-			}
+			</FadeTransition>
 		</div>
 	)
 })

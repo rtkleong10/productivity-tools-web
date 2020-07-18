@@ -11,6 +11,7 @@ import { createTimer, updateTimer, deleteTimer, moveUpTimer, moveDownTimer } fro
 import { MODAL_TYPES } from '../../utils/constants';
 import empty from './empty.svg';
 import DeleteForm from '../../components/DeleteForm';
+import FadeTransition from '../../components/FadeTransition';
 
 export class TimerList extends Component {
 	state = {
@@ -116,12 +117,12 @@ export class TimerList extends Component {
 			<div>
 				<h2>Timers</h2>
 				<div className="btn-group mb-20">
+					<FadeTransition in={isEditable}>
+						<Button icon={faPlus} color="blue" onClick={() => this.openModal(MODAL_TYPES.CREATE)}>Create Timer</Button>
+					</FadeTransition>
 					{
 						isEditable
-							? <>
-								<Button icon={faPlus} color="blue" onClick={() => this.openModal(MODAL_TYPES.CREATE)}>Create Timer</Button>
-								<Button key="edit-btn" className="ml-auto mr-0" color="faded-grey" onClick={() => setEditable(false)}>Done</Button>
-							</>
+							? <Button key="edit-btn" className="ml-auto mr-0" color="faded-grey" onClick={() => setEditable(false)}>Done</Button>
 							: <Button key="edit-btn" className="ml-auto mr-0" color="green" onClick={() => setEditable(true)}>Edit</Button>
 					}
 				</div>
