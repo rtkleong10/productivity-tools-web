@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FlipMove from 'react-flip-move';
 
 import TimerForm from '../TimerForm';
 import Modal from '../../components/Modal';
@@ -126,9 +127,9 @@ export class TimerList extends Component {
 				</div>
 				{
 					timers.length !== 0
-						? <div>
+						? <FlipMove duration={200} easing="ease-out">
 							{timerElements}
-						</div>
+						</FlipMove>
 						: <div className="grid mt-40">
 							<div className="center-wide">
 								<img className="mb-20" src={empty} alt="Empty street" />

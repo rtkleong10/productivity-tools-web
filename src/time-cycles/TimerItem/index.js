@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import Button from '../../components/Button';
 import { faEdit, faTrash, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
 import './index.scss';
 import { durationStrToMMss } from '../../utils/time';
 
-export default function TimerItem(props) {
+export const TimerItem = forwardRef((props, ref) => {
 	const {
 		timer: {
 			title,
@@ -22,7 +22,7 @@ export default function TimerItem(props) {
 	} = props;
 
 	return (
-		<div className={`timer-item${isCurrentTimer ? " current-timer-item" : ""}`}>
+		<div className={`timer-item${isCurrentTimer ? " current-timer-item" : ""}`} ref={ref}>
 			<div className="item">
 				<div>
 					<div>
@@ -49,4 +49,6 @@ export default function TimerItem(props) {
 			<div className="timer-colour" style={{ backgroundColor: colors.find(color => color.id === colorId).hex_code }}></div>
 		</div>
 	)
-}
+});
+
+export default TimerItem;
