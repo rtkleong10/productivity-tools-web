@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/productivity-tools-web/static/css/main.d70e092f.chunk.css",
-    "main.js": "/productivity-tools-web/static/js/main.17fa1ac9.chunk.js",
-    "main.js.map": "/productivity-tools-web/static/js/main.17fa1ac9.chunk.js.map",
+    "main.css": "/productivity-tools-web/static/css/main.1eae6934.chunk.css",
+    "main.js": "/productivity-tools-web/static/js/main.879f03a0.chunk.js",
+    "main.js.map": "/productivity-tools-web/static/js/main.879f03a0.chunk.js.map",
     "runtime-main.js": "/productivity-tools-web/static/js/runtime-main.d8d21f52.js",
     "runtime-main.js.map": "/productivity-tools-web/static/js/runtime-main.d8d21f52.js.map",
     "static/css/2.c6231af7.chunk.css": "/productivity-tools-web/static/css/2.c6231af7.chunk.css",
-    "static/js/2.5eeeffb6.chunk.js": "/productivity-tools-web/static/js/2.5eeeffb6.chunk.js",
-    "static/js/2.5eeeffb6.chunk.js.map": "/productivity-tools-web/static/js/2.5eeeffb6.chunk.js.map",
+    "static/js/2.fb51edf2.chunk.js": "/productivity-tools-web/static/js/2.fb51edf2.chunk.js",
+    "static/js/2.fb51edf2.chunk.js.map": "/productivity-tools-web/static/js/2.fb51edf2.chunk.js.map",
     "index.html": "/productivity-tools-web/index.html",
-    "precache-manifest.7eaeb8655d0f317cfb2c9d9cd73f0b04.js": "/productivity-tools-web/precache-manifest.7eaeb8655d0f317cfb2c9d9cd73f0b04.js",
+    "precache-manifest.2e84a4cfa4e9a745495de0b4a41275dd.js": "/productivity-tools-web/precache-manifest.2e84a4cfa4e9a745495de0b4a41275dd.js",
     "service-worker.js": "/productivity-tools-web/service-worker.js",
     "static/css/2.c6231af7.chunk.css.map": "/productivity-tools-web/static/css/2.c6231af7.chunk.css.map",
-    "static/css/main.d70e092f.chunk.css.map": "/productivity-tools-web/static/css/main.d70e092f.chunk.css.map",
-    "static/js/2.5eeeffb6.chunk.js.LICENSE.txt": "/productivity-tools-web/static/js/2.5eeeffb6.chunk.js.LICENSE.txt",
+    "static/css/main.1eae6934.chunk.css.map": "/productivity-tools-web/static/css/main.1eae6934.chunk.css.map",
+    "static/js/2.fb51edf2.chunk.js.LICENSE.txt": "/productivity-tools-web/static/js/2.fb51edf2.chunk.js.LICENSE.txt",
     "static/media/index.scss": "/productivity-tools-web/static/media/futura-medium-01-webfont.87da75bf.woff",
     "static/media/ding.mp3": "/productivity-tools-web/static/media/ding.d82fffe4.mp3",
     "static/media/empty.svg": "/productivity-tools-web/static/media/empty.ca39146a.svg",
@@ -22,8 +22,8 @@
   "entrypoints": [
     "static/js/runtime-main.d8d21f52.js",
     "static/css/2.c6231af7.chunk.css",
-    "static/js/2.5eeeffb6.chunk.js",
-    "static/css/main.d70e092f.chunk.css",
-    "static/js/main.17fa1ac9.chunk.js"
+    "static/js/2.fb51edf2.chunk.js",
+    "static/css/main.1eae6934.chunk.css",
+    "static/js/main.879f03a0.chunk.js"
   ]
 }
