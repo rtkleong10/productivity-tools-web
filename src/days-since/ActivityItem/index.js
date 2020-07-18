@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
@@ -41,7 +41,7 @@ function getDaysSinceDisplay(days_since) {
 		return `${Math.floor(days_since / 7)} weeks ago`;
 }
 
-export function ActivityItem(props) {
+export const ActivityItem = forwardRef((props, ref) => {
 	const {
 		id,
 		title,
@@ -77,7 +77,7 @@ export function ActivityItem(props) {
 
 	if (frequency) {
 		return (
-			<div className="item activity-item">
+			<div className="item activity-item" ref={ref}>
 				<DaysSinceDisplay days_since={days_since} frequency={frequency} color={color} />
 				<div>
 					<div className="mb-10">
@@ -93,7 +93,7 @@ export function ActivityItem(props) {
 
 	} else {
 		return (
-			<div className="item activity-item">
+			<div className="item activity-item" ref={ref}>
 				<div>
 					<div className="mb-10">
 						<h4 className="mb-0">
@@ -106,7 +106,7 @@ export function ActivityItem(props) {
 			</div>
 		);
 	}
-}
+});
 
 ActivityItem.propTypes = {
 	id: PropTypes.string.isRequired,
@@ -122,4 +122,4 @@ const dispatchers = {
 	performEvent,
 };
 
-export default connect(() => ({}), dispatchers)(ActivityItem);
+export default connect(() => ({}), dispatchers, null, { forwardRef: true })(ActivityItem);
