@@ -70,6 +70,12 @@
 .side-by-side {
 	@extend .grid;
 
+	> :first-child {
+		position: sticky;
+		top: 10px;
+		height: fit-content;
+	}
+
 	> * {
 		grid-column: span 6;
 	}
