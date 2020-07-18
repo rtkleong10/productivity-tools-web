@@ -94,7 +94,7 @@ export default function ProgressCircle(props) {
 			</div >
 		)
 
-		// Overdue
+	// Overdue
 	} else {
 		return (
 			<div className="progress-circle overdue" style={{ backgroundColor: color }}>

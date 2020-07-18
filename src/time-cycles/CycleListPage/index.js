@@ -2,21 +2,21 @@ import React from 'react';
 import { Helmet } from "react-helmet";
 
 import Breadcrumbs from '../../components/Breadcrumbs';
-import ActivityList from '../ActivityList';
+import CycleList from '../CycleList';
 
-export default function ActivityListPage() {
+export default function CycleListPage() {
 	return (
 		<div className="container">
 			<Helmet>
-				<title>Days Since</title>
+				<title>Time Cycles</title>
 			</Helmet>
 			<Breadcrumbs
 				breadcrumbs={[
 					{ title: "Home", to: "/" },
-					{ title: "Days Since" },
+					{ title: "Time Cycles" },
 				]} />
-			<h1>Days Since</h1>
-			<ActivityList />
+			<h1>Time Cycles</h1>
+			<CycleList/>
 		</div>
 	);
 }

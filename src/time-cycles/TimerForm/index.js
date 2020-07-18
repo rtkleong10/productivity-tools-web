@@ -1,39 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
-import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 import ColorSelect from '../../components/ColorSelect';
+import { durationStrToMMss } from '../../utils/time';
 
-export default class ActivityForm extends Component {
+export default class CycleForm extends Component {
 	state = {
 		title: "",
-		description: "",
-		frequency: "",
+		duration: "",
 		color: undefined,
 	}
 
-	reset = activity => {
-		if (activity) {
+	reset = cycle => {
+		if (cycle) {
 			const {
 				title,
-				description,
-				frequency,
+				duration,
 				color,
-			} = activity;
+			} = cycle;
 
 			this.setState({
 				title,
-				description,
-				frequency: frequency === null ? "" : frequency,
+				duration: durationStrToMMss(duration),
 				color,
 			});
 
 		} else {
 			this.setState({
 				title: "",
-				description: "",
-				frequency: "",
+				duration: "",
 				color: undefined,
 			});
 		}
@@ -44,7 +41,7 @@ export default class ActivityForm extends Component {
 			[e.target.name]: e.target.value
 		});
 	}
-
+	
 	handleColorChange = color => {
 		this.setState({
 			color: color,
@@ -56,15 +53,13 @@ export default class ActivityForm extends Component {
 
 		const {
 			title,
-			description,
-			frequency,
+			duration,
 			color,
 		} = this.state;
 
 		this.props.onSubmit({
 			title,
-			description,
-			frequency: parseInt(frequency),
+			duration,
 			color,
 		});
 	}
@@ -72,8 +67,7 @@ export default class ActivityForm extends Component {
 	render() {
 		const {
 			title,
-			description,
-			frequency,
+			duration,
 			color,
 		} = this.state;
 
@@ -92,24 +86,17 @@ export default class ActivityForm extends Component {
 					/>
 				</div>
 				<div className="form-group">
-					<label htmlFor="description">Description</label>
-					<textarea
-						id="description"
-						name="description"
-						onChange={this.handleChange}
-						value={description}
-					/>
-				</div>
-				<div className="form-group">
-					<label htmlFor="frequency">Frequency</label>
+					<label htmlFor="duration">Duration</label>
+					<p className="small">Format: mm:ss, ss</p>
 					<input
-						id="frequency"
-						name="frequency"
-						type="number"
-						min={1}
-						step={1}
+						id="duration"
+						name="duration"
+						type="text"
+						maxLength="200"
 						onChange={this.handleChange}
-						value={frequency}
+						value={duration}
+						pattern="^\d+(:\d+)?$"
+						required
 					/>
 				</div>
 				<div className="form-group">
@@ -127,6 +114,6 @@ export default class ActivityForm extends Component {
 	}
 }
 
-ActivityForm.propTypes = {
+CycleForm.propTypes = {
 	onSubmit: PropTypes.func.isRequired,
 };

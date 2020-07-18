@@ -79,5 +79,5 @@ Button.propTypes = {
 	icon: PropTypes.object,
 	size: PropTypes.oneOf(sizes),
 	color: PropTypes.oneOf(colors),
-	children: PropTypes.string,
+	children: PropTypes.any,
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { faClock, faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faClock, faUser, faSignOutAlt, faCalendar } from '@fortawesome/free-solid-svg-icons';
 import { Helmet } from "react-helmet";
 
 import Button from '../../components/Button';
@@ -22,8 +22,8 @@ export default function HomePage() {
 				<Button isLink={true} to="/logout" color="faded-grey" icon={faSignOutAlt}>Log Out</Button>
 			</div>
 			<div className="btn-group btn-group-vertical">
-				<Button isLink={true} to="/days-since" color="blue" icon={faClock}>Days Since</Button>
-				{/* <Button isLink={true} to="/progress-bars" color="green" icon={faSpinner}>Progress Bars</Button> */}
+				<Button isLink={true} to="/days-since" color="blue" icon={faCalendar}>Days Since</Button>
+				<Button isLink={true} to="/time-cycles" color="purple" icon={faClock}>Time Cycles</Button>
 			</div>
 		</div>
 	)

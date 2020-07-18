@@ -77,11 +77,11 @@ export function ActivityItem(props) {
 
 	if (frequency) {
 		return (
-			<div className="activity-element">
+			<div className="item activity-item">
 				<ProgressCircle days_since={days_since} frequency={frequency} color={color} />
 				<div>
 					<div className="mb-10">
-						<h4 className="activity-title mb-0">
+						<h4 className="mb-0">
 							<Link to={`/days-since/${id}`}>{title}</Link>
 						</h4>
 						<p>{getFrequencyDisplay(frequency)} • {getLastEventTypeDisplay(last_event_type)} {getDaysSinceDisplay(days_since)}</p>
@@ -93,10 +93,10 @@ export function ActivityItem(props) {
 
 	} else {
 		return (
-			<div className="activity-element">
+			<div className="item activity-item">
 				<div>
 					<div className="mb-10">
-						<h4 className="activity-title mb-0">
+						<h4 className="mb-0">
 							<Link to={`/days-since/${id}`}>{title}</Link>
 						</h4>
 						<p>{getLastEventTypeDisplay(last_event_type)} {getDaysSinceDisplay(days_since)}</p>

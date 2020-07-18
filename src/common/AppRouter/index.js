@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import Errors from '../Errors';
 import Loader from '../../components/Loader';
 import HomePage from '../HomePage';
 import NotFoundPage from '../NotFoundPage';
+
 import { GUEST_AUTH_ROUTES, USER_AUTH_ROUTES } from '../../auth/routes';
 import DAYS_SINCE_ROUTES from '../../days-since/routes';
+import TIME_CYCLES_ROUTES from '../../time-cycles/routes';
+
 import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
-import Errors from '../Errors';
 
 const RedirectToNext = props => {
 	const next = new URLSearchParams(props.location.search).get("next");
@@ -63,6 +66,7 @@ export class AppRouter extends Component {
 			let allRoutes = [
 				...USER_AUTH_ROUTES,
 				...DAYS_SINCE_ROUTES,
+				...TIME_CYCLES_ROUTES,
 			];
 
 			return (
