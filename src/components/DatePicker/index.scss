@@ -41,8 +41,4 @@
 	.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
 		background-color: $light-blue;
 	}
-	
-	.DayPicker-Day--today:not(.DayPicker-Day--disabled) {
-		color: $blue;
-	}
 }
