@@ -25,7 +25,6 @@ function getClockDisplay(daysLeft) {
 
 export default function DaysSinceDisplay(props) {
 	const animationTime = 800;
-	const startTime = new Date();
 
 	let canvasRef = useRef();
 
@@ -40,6 +39,7 @@ export default function DaysSinceDisplay(props) {
 	const percentage = Math.max(days_since / frequency, 0);
 
 	useEffect(() => {
+		const startTime = new Date();
 		let canvas = canvasRef.current;
 
 		if (canvas) {
@@ -76,7 +76,7 @@ export default function DaysSinceDisplay(props) {
 
 			draw();
 		}
-	}, [startTime, color, percentage]);
+	}, [color, percentage]);
 
 	const innerCircle = (
 		<div className="inner-circle">
