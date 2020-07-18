@@ -6,6 +6,8 @@ import './index.scss';
 import ding from './ding.mp3';
 import { durationSecToMMss, durationStrToSec } from '../../utils/time';
 
+const MIN_INTERVAL = 250;
+
 export class TimerDisplay extends Component {
 	state = {
 		nonce: 0,
@@ -92,7 +94,7 @@ export class TimerDisplay extends Component {
 
 		if (play) {
 			clearInterval(this.interval);
-			this.interval = setInterval(this.tick, Math.min(duration, 500));
+			this.interval = setInterval(this.tick, Math.min(duration, MIN_INTERVAL));
 			this.setState({
 				nonce: 0,
 				timerEvents: [new Date()],
@@ -118,7 +120,7 @@ export class TimerDisplay extends Component {
 		} else {
 			const duration = this.getCurrentDuration();
 			clearInterval(this.interval);
-			this.interval = setInterval(this.tick, Math.min(duration, 500));
+			this.interval = setInterval(this.tick, Math.min(duration, MIN_INTERVAL));
 			this.setState({
 				timerEvents: [...this.state.timerEvents, new Date()],
 			});
