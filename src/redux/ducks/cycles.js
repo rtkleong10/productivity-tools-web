@@ -23,7 +23,7 @@ export const createCycle = ({ title }) => (dispatch, getState) => {
 		.then(res => {
 			dispatch(createApiAction(ENTITY_NAME, STATUSES.SUCCESS, METHODS.CREATE, {
 				...res.data,
-				days_since: 0,
+				total_duration: "00:00:00",
 			}));
 		})
 		.catch(err => {
