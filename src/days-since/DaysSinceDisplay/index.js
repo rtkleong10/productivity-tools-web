@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { getTextWithBrs } from '../../utils/text';
 import './index.scss';
 
-function getClockDisplay(daysLeft, isMobile = false) {
+function getClockDisplay(daysLeft) {
 	if (daysLeft >= 0) {
 		if (daysLeft === 1)
 			return "1 day\nleft";
@@ -37,7 +37,7 @@ export default function DaysSinceDisplay(props) {
 
 	const daysLeft = frequency - days_since;
 	const clockDisplay = getClockDisplay(daysLeft);
-	const percentage = days_since / frequency;
+	const percentage = Math.max(days_since / frequency, 0);
 
 	useEffect(() => {
 		let canvas = canvasRef.current;
