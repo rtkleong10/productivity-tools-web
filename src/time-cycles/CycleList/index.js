@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FlipMove from 'react-flip-move';
 
 import CycleForm from '../CycleForm';
 import Modal from '../../components/Modal';
@@ -108,7 +109,7 @@ export class CycleList extends Component {
 				</div>
 				{
 					cycles.length !== 0
-						? <div className="item-list">
+						? <FlipMove className="item-list">
 							{
 								cycles.map(cycle => (
 									<CycleItem
@@ -119,7 +120,7 @@ export class CycleList extends Component {
 									/>
 								))
 							}
-						</div>
+						</FlipMove>
 						: <div className="grid mt-40">
 							<div className="center-wide">
 								<img className="mb-20" src={empty} alt="Empty street" />

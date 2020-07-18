@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FlipMove from 'react-flip-move';
 
 import Button from '../../components/Button';
 import Loader from '../../components/Loader';
@@ -137,7 +138,7 @@ export class EventList extends Component {
 				</div>
 				{
 					activityEvents.length !== 0
-						? <div className="box">
+						? <FlipMove className="box">
 							{
 								activityEvents.map(event => (
 									<EventItem
@@ -149,7 +150,7 @@ export class EventList extends Component {
 									/>
 								))
 							}
-						</div>
+						</FlipMove>
 						: <div className="center mt-40">
 							<img className="mb-20" src={empty} alt="Trees under the sun" />
 							<h3>No Events</h3>

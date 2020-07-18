@@ -1,5 +1,5 @@
 import moment from 'moment';
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCheck, faForward, faQuestion, faEdit } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,10 +8,9 @@ import { EVENT_TYPES } from '../utils';
 import { getTextWithBrs } from '../../utils/text';
 import './index.scss';
 
-export default function EventItem(props) {
+export const EventItem = forwardRef((props, ref) => {
 	const {
 		event: {
-			id,
 			event_type,
 			date,
 			description,
@@ -41,7 +40,7 @@ export default function EventItem(props) {
 	}
 
 	return (
-		<div key={id} className="event-item">
+		<div className="event-item" ref={ref}>
 			<div className="mb-n10">
 				<p>{eventDisplay} on {dateStr}</p>
 				<p className="small">{getTextWithBrs(description)}</p>
@@ -55,4 +54,6 @@ export default function EventItem(props) {
 			}
 		</div>
 	)
-}
+})
+
+export default EventItem;

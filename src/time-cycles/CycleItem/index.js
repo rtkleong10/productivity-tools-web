@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 
-export default function CycleItem(props) {
+export const CycleItem = forwardRef((props, ref) => {
 	const {
 		cycle: {
 			id,
@@ -17,7 +17,7 @@ export default function CycleItem(props) {
 	} = props;
 
 	return (
-		<div className="item">
+		<div className="item" ref={ref}>
 			<div className="mb-10">
 				<h3 className="mb-0">
 					<Link to={`/time-cycles/${id}`}>{title}</Link>
@@ -30,4 +30,6 @@ export default function CycleItem(props) {
 			</div>
 		</div>
 	);
-}
+});
+
+export default CycleItem;
