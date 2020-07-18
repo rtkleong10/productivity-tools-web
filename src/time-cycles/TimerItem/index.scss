@@ -1,0 +1,33 @@
+@import "../../styles/1-helpers/all";
+
+.timer-item {
+	position: relative;
+
+	.timer-colour {
+		position: absolute;
+		width: 20px;
+		top: 0;
+		bottom: 0;
+		z-index: 0;
+		border-radius: 10px 0px 0px 10px;
+	}
+
+	.item {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		padding-left: 40px;
+
+		> :not(:last-child) {
+			margin-right: 20px;
+		}
+	}
+
+	&.current-timer-item .item {
+		background-color: $dark-grey;
+		
+		* {
+			color: $white;
+		}
+	}
+}

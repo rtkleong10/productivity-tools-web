@@ -3,19 +3,19 @@
 	width: 80%;
 	max-width: 1300px;
 	padding: 40px 0;
-	
-	@include media-breakpoint-down('md') {
-	    width: 90%;
+
+	@include media-breakpoint-down("md") {
+		width: 90%;
 	}
 }
 
 .grid {
-    display: grid;
-    grid-column-gap: 30px;
-    grid-template-columns: repeat(12, 1fr);
+	display: grid;
+	grid-column-gap: 30px;
+	grid-template-columns: repeat(12, 1fr);
 
-    @include media-breakpoint-down('sm') {
-	    grid-column-gap: 20px;
+	@include media-breakpoint-down("sm") {
+		grid-column-gap: 20px;
 	}
 }
 
@@ -26,6 +26,97 @@
 	padding: 20px;
 }
 
+.item-list {
+	@extend .grid;
+
+	> * {
+		grid-column: span 6;
+
+		@include media-breakpoint-down("lg") {
+			grid-column: span 12;
+
+			&:not(:last-child) {
+				margin-bottom: 30px;
+			}
+		}
+	}
+}
+
+.item {
+	background-color: $faded-grey;
+	border-radius: 20px;
+	padding: 20px;
+	box-shadow: $raised-shadow;
+	margin-bottom: 30px;
+}
+
 .center {
 	text-align: center;
+}
+
+.center-wide {
+	@extend .center;
+	grid-column: 5 / span 4;
+
+	@include media-breakpoint-down("lg") {
+		grid-column: 4 / span 6;
+	}
+
+	@include media-breakpoint-down("sm") {
+		grid-column: 3 / span 8;
+	}
+}
+
+.side-by-side {
+	@extend .grid;
+
+	> * {
+		grid-column: span 6;
+	}
+
+	@include media-breakpoint-down("lg") {
+		> * {
+			grid-column: span 12;
+		}
+
+		> :not(:last-child) {
+			margin-bottom: 30px;
+		}
+	}
+}
+
+.progress-circle {
+    position: relative;
+    border-radius: 50%;
+    background-color: $white;
+	
+    .inner-circle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        height: 60%;
+        width: 60%;
+        position: absolute;
+        background: $dark-grey;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+
+        > p {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 90%;
+            transform: translate(-50%, -50%);
+            font: $h6-font;
+            font-size: 12px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+    }
+
+    .outer-circle {
+        width: 100%;
+        height: 100%;
+    }
 }

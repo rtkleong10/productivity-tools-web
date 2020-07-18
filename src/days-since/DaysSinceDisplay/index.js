@@ -23,7 +23,7 @@ function getClockDisplay(daysLeft, isMobile = false) {
 	}
 }
 
-export default function ProgressCircle(props) {
+export default function DaysSinceDisplay(props) {
 	const animationTime = 800;
 	const startTime = new Date();
 
@@ -88,24 +88,24 @@ export default function ProgressCircle(props) {
 	// Not overdue
 	if (daysLeft >= 0) {
 		return (
-			<div className="progress-circle">
+			<div className="days-since-display progress-circle">
 				<canvas className="outer-circle" ref={canvasRef} height="200px" width="200px"></canvas>
 				{innerCircle}
 			</div >
 		)
 
-		// Overdue
+	// Overdue
 	} else {
 		return (
-			<div className="progress-circle overdue" style={{ backgroundColor: color }}>
-				<div className="outer-circle"></div>
+			<div className="days-since-display progress-circle" style={{ backgroundColor: color }}>
+				<div className="outer-circle outer-circle-overdue"></div>
 				{innerCircle}
 			</div>
 		)
 	}
 }
 
-ProgressCircle.propTypes = {
+DaysSinceDisplay.propTypes = {
 	days_since: PropTypes.number.isRequired,
 	frequency: PropTypes.number.isRequired,
 	color: PropTypes.string.isRequired,

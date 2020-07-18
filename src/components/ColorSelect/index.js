@@ -28,12 +28,14 @@ export function ColorSelect(props) {
 	const {
 		colors,
 		colorsLoading,
+		colorsError,
 		listColors,
 	} = props;
 
 	useEffect(() => {
-		listColors()
-	}, [listColors]);
+		if (!colors || colors.length === 0)
+			listColors();
+	}, [colors, colorsLoading, colorsError, listColors]);
 	
 	let colorOptions = [];
 	

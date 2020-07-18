@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faForward } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
-import ProgressCircle from '../ProgressCircle';
+import DaysSinceDisplay from '../DaysSinceDisplay';
 import { EVENT_TYPES, getFrequencyDisplay } from '../utils';
 import { performEvent } from '../../redux/ducks/activityEvents';
 import './index.scss';
@@ -41,7 +41,7 @@ function getDaysSinceDisplay(days_since) {
 		return `${Math.floor(days_since / 7)} weeks ago`;
 }
 
-export function ActivityElement(props) {
+export function ActivityItem(props) {
 	const {
 		id,
 		title,
@@ -77,13 +77,13 @@ export function ActivityElement(props) {
 
 	if (frequency) {
 		return (
-			<div className="activity-element">
-				<ProgressCircle days_since={days_since} frequency={frequency} color={color} />
+			<div className="item activity-item">
+				<DaysSinceDisplay days_since={days_since} frequency={frequency} color={color} />
 				<div>
 					<div className="mb-10">
-						<h3 className="activity-title mb-0">
+						<h4 className="mb-0">
 							<Link to={`/days-since/${id}`}>{title}</Link>
-						</h3>
+						</h4>
 						<p>{getFrequencyDisplay(frequency)} • {getLastEventTypeDisplay(last_event_type)} {getDaysSinceDisplay(days_since)}</p>
 					</div>
 					{eventDisplay}
@@ -93,10 +93,10 @@ export function ActivityElement(props) {
 
 	} else {
 		return (
-			<div className="activity-element">
+			<div className="item activity-item">
 				<div>
 					<div className="mb-10">
-						<h4 className="activity-title mb-0">
+						<h4 className="mb-0">
 							<Link to={`/days-since/${id}`}>{title}</Link>
 						</h4>
 						<p>{getLastEventTypeDisplay(last_event_type)} {getDaysSinceDisplay(days_since)}</p>
@@ -108,7 +108,7 @@ export function ActivityElement(props) {
 	}
 }
 
-ActivityElement.propTypes = {
+ActivityItem.propTypes = {
 	id: PropTypes.string.isRequired,
 	title: PropTypes.string.isRequired,
 	days_since: PropTypes.number.isRequired,
@@ -122,4 +122,4 @@ const dispatchers = {
 	performEvent,
 };
 
-export default connect(() => ({}), dispatchers)(ActivityElement);
+export default connect(() => ({}), dispatchers)(ActivityItem);

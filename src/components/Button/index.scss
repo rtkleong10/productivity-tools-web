@@ -69,9 +69,12 @@
 .btn-group {
 	display: flex;
 	flex-direction: row;
+	flex-wrap: wrap;
+	margin-bottom: -10px;
 
 	> .btn {
 		margin-right: 5px;
+		margin-bottom: 10px;
 	}
 
 	&.btn-group-vertical {

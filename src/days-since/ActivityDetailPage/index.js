@@ -15,7 +15,6 @@ import EventList from '../EventList';
 import DeleteForm from '../../components/DeleteForm';
 import { MODAL_TYPES } from '../../utils/constants';
 import { getTextWithBrs } from '../../utils/text';
-import './index.scss';
 import ActivityStatistics from '../ActivityStatistics';
 
 export class ActivityDetailPage extends Component {
@@ -102,7 +101,7 @@ export class ActivityDetailPage extends Component {
 						{ title: "Days Since", to: "/days-since" },
 						{ title },
 					]} />
-				<div className="grid activity-detail">
+				<div className="side-by-side">
 					<div>
 						<div className="mb-30">
 							<div className="mb-20">

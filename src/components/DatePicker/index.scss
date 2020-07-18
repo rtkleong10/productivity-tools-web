@@ -1,4 +1,4 @@
-@import '../../styles/1-helpers/all';
+@import "../../styles/1-helpers/all";
 
 .date-picker {
 	position: relative;
@@ -15,12 +15,13 @@
 	.DayPickerInput {
 		display: block;
 		caret-color: transparent !important;
-	
-		&, .DayPicker {
+
+		&,
+		.DayPicker {
 			font: $p-font;
 			color: $dark-grey;
 		}
-	
+
 		> input {
 			cursor: pointer;
 		}
@@ -30,19 +31,25 @@
 		top: 10px;
 		box-shadow: $raised-shadow;
 	}
-	
+
 	.DayPicker-Day {
 		border-radius: 5px;
 	}
 	.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
 		background-color: $blue;
 	}
-	  
-	.DayPicker:not(.DayPicker--interactionDisabled) .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
+
+	.DayPicker:not(.DayPicker--interactionDisabled)
+		.DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
 		background-color: $light-blue;
 	}
-	
-	.DayPicker-Day--today:not(.DayPicker-Day--disabled) {
+
+	.DayPicker-Day--today {
 		color: $blue;
 	}
+	
+	.DayPicker-Day--disabled {
+		color: $light-grey;
+	}
+	
 }

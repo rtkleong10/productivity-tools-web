@@ -1,19 +1,10 @@
 @import '../../styles/1-helpers/all';
 
-.activity-element {
+.activity-item {
     display: flex;
-    background-color: $faded-grey;
-    border-radius: 20px;
-    padding: 20px;
-    box-shadow: $raised-shadow;
-    margin-bottom: 30px;
 
     .progress-circle {
         margin-right: 30px;
-    }
-
-    .activity-title > a {
-        font: $h3-font;
     }
 
     .todays-event {
@@ -26,10 +17,6 @@
         .progress-circle {
             margin-right: 0px;
             margin-bottom: 10px;
-        }
-
-        p {
-            font-size: $small-size;
         }
     }
 }
