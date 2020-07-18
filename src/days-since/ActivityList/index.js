@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import FlipMove from 'react-flip-move';
 
 import Modal from '../../components/Modal';
 import Button from '../../components/Button';
@@ -120,18 +121,18 @@ export class ActivityListPage extends Component {
 					activitiesSplitByFrequency.true.length !== 0 &&
 					<div>
 						<h3>With Frequency</h3>
-						<div className="item-list">
+						<FlipMove className="item-list">
 							{this.mapActivitiesToActivityItems(activitiesSplitByFrequency.true)}
-						</div>
+						</FlipMove>
 					</div>
 				}
 				{
 					activitiesSplitByFrequency.false.length !== 0 &&
 					<div>
 						<h3>Without Frequency</h3>
-						<div className="item-list">
+						<FlipMove className="item-list">
 							{this.mapActivitiesToActivityItems(activitiesSplitByFrequency.false)}
-						</div>
+						</FlipMove>
 					</div>
 				}
 				{
