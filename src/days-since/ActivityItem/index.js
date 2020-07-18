@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faForward } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
-import ProgressCircle from '../ProgressCircle';
+import DaysSinceDisplay from '../DaysSinceDisplay';
 import { EVENT_TYPES, getFrequencyDisplay } from '../utils';
 import { performEvent } from '../../redux/ducks/activityEvents';
 import './index.scss';
@@ -78,7 +78,7 @@ export function ActivityItem(props) {
 	if (frequency) {
 		return (
 			<div className="item activity-item">
-				<ProgressCircle days_since={days_since} frequency={frequency} color={color} />
+				<DaysSinceDisplay days_since={days_since} frequency={frequency} color={color} />
 				<div>
 					<div className="mb-10">
 						<h4 className="mb-0">

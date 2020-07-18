@@ -110,6 +110,7 @@ export class CycleDetailPage extends Component {
 							clearCurrentTimer={() => this.setState({ currentTimer: null })}
 							getPreviousTimer={() => this.getTimer(false)}
 							getNextTimer={() => this.getTimer(true)}
+							isDisabled={timers.length === 0}
 						/>
 					</div>
 					<TimerList

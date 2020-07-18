@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import moment from 'moment';
 import { faPause, faPlay, faStop, faLink, faUnlink, faVolumeUp, faVolumeMute, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
@@ -85,7 +84,11 @@ export class TimerDisplay extends Component {
 
 	changeTimer = (next = true, play = true) => {
 		const newTimer = next ? this.props.getNextTimer() : this.props.getPreviousTimer();
-		const duration = moment.duration(newTimer.duration).asSeconds();
+
+		if (!newTimer)
+			return;
+
+		const duration = durationStrToSec(newTimer.duration);
 
 		if (play) {
 			clearInterval(this.interval);
@@ -185,6 +188,7 @@ export class TimerDisplay extends Component {
 	render() {
 		const {
 			currentTimer,
+			isDisabled,
 		} = this.props;
 
 		const {
@@ -196,29 +200,33 @@ export class TimerDisplay extends Component {
 			<div className="timer-display">
 				<div className="progress-circle">
 					<canvas className="outer-circle" ref={canvas => this.canvasRef = canvas} height="600px" width="600px" style={{ display: currentTimer ? "block" : "none" }}></canvas>
-					{
-						!currentTimer &&
-						<div className="outer-circle faded-grey" style={{ backgroundColor: "#dfdfdf", borderRadius: "100%", width: "100%", height: "100%" }}></div>
-					}
 					<div className="inner-circle">
 						<p>{this.getTimeDisplay()}</p>
-						<p className="mobile-text">{this.getTimeDisplay()}</p>
 					</div>
 				</div>
-				<div className="btn-group">
-					<Button icon={faStepBackward} color="faded-grey" onClick={() => this.changeTimer(false, false)} aria-label="Previous timer" />
-					{
-						this.isPaused()
-							? <Button icon={faPlay} color="faded-grey" onClick={this.play} aria-label="Play" />
-							: <Button icon={faPause} color="faded-grey" onClick={this.pause} aria-label="Pause" />
-					}
-					<Button icon={faStop} color="faded-grey" onClick={this.stop} aria-label="Stop" />
-					<Button icon={faStepForward} color="faded-grey" onClick={() => this.changeTimer(true, false)} aria-label="Next timer" />
-				</div>
-				<div className="btn-group">
-					<Button icon={autoPlay ? faLink : faUnlink} color={autoPlay ? "dark-grey" : "faded-grey"} onClick={() => this.setState({ autoPlay: !autoPlay })}>Auto-play: {autoPlay ? "On" : "Off"}</Button>
-					<Button icon={sound ? faVolumeUp : faVolumeMute} color={sound ? "dark-grey" : "faded-grey"} onClick={() => this.setState({ sound: !sound })}>Sound: {sound ? "On" : "Off"}</Button>
-				</div>
+				{
+					!isDisabled &&
+					<>
+						{
+							currentTimer &&
+							<h3>{currentTimer.title}</h3>
+						}
+						<div className="btn-group">
+							<Button icon={faStepBackward} color="faded-grey" onClick={() => this.changeTimer(false, false)} aria-label="Previous timer" />
+							{
+								this.isPaused()
+									? <Button icon={faPlay} color="faded-grey" onClick={this.play} aria-label="Play" />
+									: <Button icon={faPause} color="faded-grey" onClick={this.pause} aria-label="Pause" />
+							}
+							<Button icon={faStop} color="faded-grey" onClick={this.stop} aria-label="Stop" />
+							<Button icon={faStepForward} color="faded-grey" onClick={() => this.changeTimer(true, false)} aria-label="Next timer" />
+						</div>
+						<div className="btn-group">
+							<Button icon={autoPlay ? faLink : faUnlink} color={autoPlay ? "dark-grey" : "faded-grey"} onClick={() => this.setState({ autoPlay: !autoPlay })}>Auto-play: {autoPlay ? "On" : "Off"}</Button>
+							<Button icon={sound ? faVolumeUp : faVolumeMute} color={sound ? "dark-grey" : "faded-grey"} onClick={() => this.setState({ sound: !sound })}>Sound: {sound ? "On" : "Off"}</Button>
+						</div>
+					</>
+				}
 			</div>
 		)
 	}
