@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { API_URL } from '../../utils/constants';
+import { AUTH_URL } from '../../utils/constants';
 import { STATUSES, METHODS, createApiAction, createApiReducer, getTokenConfig, displayErrorMsgOrUnauth } from './helpers';
 
 export const ENTITY_NAME = 'profile';
@@ -14,7 +14,7 @@ export const retrieveProfile = () => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.RETRIEVE));
 
 	return axios.get(
-		`${API_URL}/${ENTITY_NAME}/`,
+		`${AUTH_URL}/${ENTITY_NAME}/`,
 		getTokenConfig(getState)
 	)
 		.then(res => {
@@ -31,7 +31,7 @@ export const updateProfile = ({ timezone }) => (dispatch, getState) => {
 	dispatch(createApiAction(ENTITY_NAME, STATUSES.REQUEST, METHODS.UPDATE));
 
 	return axios.patch(
-		`${API_URL}/${ENTITY_NAME}/`,
+		`${AUTH_URL}/${ENTITY_NAME}/`,
 		{
 			timezone,
 		},
