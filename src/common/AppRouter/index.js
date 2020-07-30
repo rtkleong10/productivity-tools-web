@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { HashRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -6,17 +7,13 @@ import Errors from '../Errors';
 import Loader from '../../components/Loader';
 import HomePage from '../HomePage';
 import NotFoundPage from '../NotFoundPage';
+import RedirectToNext from '../RedirectToNext';
 
 import { GUEST_AUTH_ROUTES, USER_AUTH_ROUTES } from '../../auth/routes';
 import DAYS_SINCE_ROUTES from '../../days-since/routes';
 import TIME_CYCLES_ROUTES from '../../time-cycles/routes';
 
 import { refreshTokenLogin, selectRefreshToken, selectAccessToken, selectLoginLoading, selectLoginError } from '../../redux/ducks/auth';
-
-const RedirectToNext = props => {
-	const next = new URLSearchParams(props.location.search).get("next");
-	return <Redirect to={`/${next ? next : ""}`} />;
-};
 
 export class AppRouter extends Component {
 	componentDidMount() {
@@ -110,6 +107,15 @@ export class AppRouter extends Component {
 			)
 		}
 	}
+}
+
+AppRouter.propTypes = {
+	loginLoading: PropTypes.bool.isRequired,
+	loginError: PropTypes.object,
+	refreshToken: PropTypes.string,
+	accessToken: PropTypes.string,
+
+	refreshTokenLogin: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
