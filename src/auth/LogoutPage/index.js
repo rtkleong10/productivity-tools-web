@@ -26,12 +26,12 @@ export class LogoutPage extends Component {
 	}
 }
 
-const dispatchers = {
-    logout,
-};
-
 LogoutPage.propTypes = {
     logout: PropTypes.func.isRequired,
+};
+
+const dispatchers = {
+    logout,
 };
 
 export default connect(() => ({}), dispatchers)(LogoutPage);

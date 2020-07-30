@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { faPause, faPlay, faStop, faLink, faUnlink, faVolumeUp, faVolumeMute, faStepBackward, faStepForward } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
@@ -151,6 +152,7 @@ export class TimerDisplay extends Component {
 			currentTimer,
 			colors,
 		} = this.props;
+
 		const timer = newTimer ? newTimer : currentTimer;
 
 		if (!timer)
@@ -232,6 +234,19 @@ export class TimerDisplay extends Component {
 			</div>
 		)
 	}
+}
+
+TimerDisplay.propTypes = {
+	currentTimer: PropTypes.shape({
+		title: PropTypes.string.isRequired,
+		duration: PropTypes.string.isRequired,
+		color: PropTypes.number.isRequired,
+	}),
+	colors: PropTypes.array.isRequired,
+	clearCurrentTimer: PropTypes.func.isRequired,
+	getPreviousTimer: PropTypes.func.isRequired,
+	getNextTimer: PropTypes.func.isRequired,
+	isDisabled: PropTypes.bool.isRequired,
 }
 
 export default TimerDisplay;

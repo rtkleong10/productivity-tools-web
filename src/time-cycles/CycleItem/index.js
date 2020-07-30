@@ -1,4 +1,5 @@
 import React, { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
@@ -31,5 +32,15 @@ export const CycleItem = forwardRef((props, ref) => {
 		</div>
 	);
 });
+
+CycleItem.propTypes = {
+	cycle: PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		total_duration: PropTypes.string.isRequired,
+	}).isRequired,
+	openEditModal: PropTypes.func.isRequired,
+	openDeleteModal: PropTypes.func.isRequired,
+}
 
 export default CycleItem;

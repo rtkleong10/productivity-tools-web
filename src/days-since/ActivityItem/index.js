@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck, faForward } from '@fortawesome/free-solid-svg-icons';
@@ -116,6 +116,8 @@ ActivityItem.propTypes = {
 	color: PropTypes.string.isRequired,
 	last_event_type: PropTypes.number,
 	todays_event: PropTypes.number,
+
+	performEvent: PropTypes.func.isRequired,		
 }
 
 const dispatchers = {

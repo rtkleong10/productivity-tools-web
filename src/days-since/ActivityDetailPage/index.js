@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -137,6 +138,27 @@ export class ActivityDetailPage extends Component {
 			</div>
 		);
 	}
+}
+
+ActivityDetailPage.propTypes = {
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			activityId: PropTypes.string.isRequired,
+		}).isRequired,
+	}).isRequired,
+	
+	activity: PropTypes.shape({
+		title: PropTypes.string.isRequired,
+		description: PropTypes.string.isRequired,
+		frequency: PropTypes.number,
+	}),
+	activityId: PropTypes.string,
+	activityLoading: PropTypes.bool.isRequired,
+	activityError: PropTypes.object,
+	
+	retrieveActivity: PropTypes.func.isRequired,
+	updateActivity: PropTypes.func.isRequired,
+	deleteActivity: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

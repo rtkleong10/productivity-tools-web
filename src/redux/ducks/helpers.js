@@ -43,10 +43,10 @@ export function createApiAction(entityName, status, method, payload) {
 export function createApiReducer(entityName, id="id") {
     const initialState = {
         loading: {
-            [METHODS.CREATE]: true,
+            [METHODS.CREATE]: false,
             [METHODS.RETRIEVE]: true,
-            [METHODS.UPDATE]: true,
-            [METHODS.DELETE]: true,
+            [METHODS.UPDATE]: false,
+            [METHODS.DELETE]: false,
             [METHODS.LIST]: true,
         },
 		error: {

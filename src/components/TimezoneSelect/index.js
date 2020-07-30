@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Select from '../Select';
 import { connect } from 'react-redux';
 
@@ -34,6 +35,14 @@ export function TimezoneSelect(props) {
 			{...props}
 			/>
 	);
+}
+
+TimezoneSelect.propTypes = {
+	timezones: PropTypes.arrayOf(PropTypes.string).isRequired,
+	timezonesLoading: PropTypes.bool.isRequired,
+	timezonesError: PropTypes.object,
+
+	listTimezones: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

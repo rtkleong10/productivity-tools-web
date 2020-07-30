@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import { closeError, selectErrors } from '../../redux/ducks/errors';
@@ -41,7 +41,11 @@ export class Errors extends Component {
 }
 
 Errors.propTypes = {
-	errors: PropTypes.array.isRequired,
+	errors: PropTypes.arrayOf(PropTypes.shape({
+		id: PropTypes.string.isRequired,
+		isVisible: PropTypes.bool.isRequired,
+		message: PropTypes.string.isRequired,
+	}).isRequired).isRequired,
 	closeError: PropTypes.func.isRequired,
 }
 

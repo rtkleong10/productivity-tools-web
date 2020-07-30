@@ -1,7 +1,8 @@
-import moment from 'moment';
 import React, { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faCheck, faForward, faQuestion, faEdit } from '@fortawesome/free-solid-svg-icons';
+import moment from 'moment';
 
 import Button from '../../components/Button';
 import { EVENT_TYPES } from '../utils';
@@ -55,5 +56,16 @@ export const EventItem = forwardRef((props, ref) => {
 		</div>
 	)
 })
+
+EventItem.propTypes = {
+	event: PropTypes.shape({
+		event_type: PropTypes.oneOf(Object.values(EVENT_TYPES)),
+		date: PropTypes.string.isRequired,
+		description: PropTypes.string.isRequired,
+	}).isRequired,
+	isEditable: PropTypes.bool.isRequired,
+	openEditModal: PropTypes.func.isRequired,
+	openDeleteModal: PropTypes.func.isRequired,
+}
 
 export default EventItem;

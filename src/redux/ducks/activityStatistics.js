@@ -8,7 +8,7 @@ export const ACTIVITYSTATS_ACTIONS = getActionTypes('ACTIVITYSTATS');
 
 // REDUCER
 const initialState = {
-	items: [],
+	item: null,
 	loading: true,
 	error: null,
 };
@@ -26,7 +26,7 @@ export default function activityStatisticsReducer(state = initialState, action) 
 		case ACTIVITYSTATS_ACTIONS.SUCCESS:
 			return {
 				...state,
-				items: action.payload,
+				item: action.payload,
 				loading: false,
 			}
 
@@ -63,4 +63,4 @@ export const retrieveActivityStatistics = activityId => (dispatch, getState) => 
 // SELECTORS
 export const selectActivityStatisticsLoading = state => state.activityStatisticsReducer.loading === true;
 export const selectActivityStatisticsError = state => state.activityStatisticsReducer.error;
-export const selectActivityStatistics = state => state.activityStatisticsReducer.items;
+export const selectActivityStatistics = state => state.activityStatisticsReducer.item;

@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Helmet } from "react-helmet";
@@ -51,9 +52,21 @@ export function ProfilePage(props) {
 					{ title: "Profile" },
 				]} />
 			<h1>Profile</h1>
-			<ProfileForm profile={profile} onSubmit={updateProfile} />
+			<ProfileForm
+				profile={profile}
+				onSubmit={updateProfile}
+			/>
 		</div>
 	)
+}
+
+ProfilePage.propTypes = {
+	profile: PropTypes.object,
+	profileLoading: PropTypes.bool.isRequired,
+	profileError: PropTypes.object,
+
+	retrieveProfile: PropTypes.func.isRequired,
+	updateProfile: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

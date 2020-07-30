@@ -50,3 +50,6 @@ export const updateProfile = ({ timezone }) => (dispatch, getState) => {
 export const selectProfileLoading = state => state.profileReducer.loading[METHODS.RETRIEVE] === true;
 export const selectProfileError = state => state.profileReducer.error[METHODS.RETRIEVE];
 export const selectProfile = state => state.profileReducer.item;
+
+export const selectProfileUpdateLoading = state => state.profileReducer.loading[METHODS.UPDATE] === true;
+export const selectProfileUpdateError = state => state.profileReducer.error[METHODS.UPDATE];

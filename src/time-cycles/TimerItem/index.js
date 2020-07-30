@@ -1,4 +1,5 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef } from 'react';
+import PropTypes from 'prop-types';
 import Button from '../../components/Button';
 import { faEdit, faTrash, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 
@@ -48,5 +49,20 @@ export const TimerItem = forwardRef((props, ref) => {
 		</div>
 	)
 });
+
+TimerItem.propTypes = {
+	timer: PropTypes.shape({
+		title: PropTypes.string.isRequired,
+		duration: PropTypes.string.isRequired,
+		color: PropTypes.number.isRequired,
+	}).isRequired,
+	colors: PropTypes.array.isRequired,
+	isEditable: PropTypes.bool.isRequired,
+	isCurrentTimer: PropTypes.bool.isRequired,
+	openEditModal: PropTypes.func.isRequired,
+	openDeleteModal: PropTypes.func.isRequired,
+	moveUpTimer: PropTypes.func,
+	moveDownTimer: PropTypes.func,
+}
 
 export default TimerItem;
