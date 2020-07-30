@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { faSave } from '@fortawesome/free-solid-svg-icons';
+import { connect } from 'react-redux';
+import { faSave, faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import Button from '../../components/Button';
 import TimezoneSelect from '../../components/TimezoneSelect';
+import { selectProfileUpdateLoading } from '../../redux/ducks/profile';
 
-export default class LoginForm extends Component {
+export class ProfileForm extends Component {
 	state = {
 		timezone: null,
 	}
@@ -42,6 +44,10 @@ export default class LoginForm extends Component {
 
 	render() {
 		const {
+			profileUpdateLoading,
+		} = this.props;
+
+		const {
 			timezone,
 		} = this.state;
 
@@ -56,12 +62,27 @@ export default class LoginForm extends Component {
 						required
 						/>
 				</div>
-				<Button icon={faSave}>Save</Button>
+				{
+					profileUpdateLoading
+						? <Button icon={faSpinner} color="faded-grey" disabled={true}>Saving</Button>
+						: <Button icon={faSave}>Save</Button>
+				}
 			</form>
 		);
 	}
 }
 
-LoginForm.propTypes = {
+ProfileForm.propTypes = {
+	profile: PropTypes.shape({
+		timezone: PropTypes.string.isRequired,
+	}),
 	onSubmit: PropTypes.func.isRequired,
+
+	profileUpdateLoading: PropTypes.bool.isRequired,
 };
+
+const mapStateToProps = state => ({
+	profileUpdateLoading: selectProfileUpdateLoading(state),
+});
+
+export default connect(mapStateToProps, {})(ProfileForm);

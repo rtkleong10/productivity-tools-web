@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from "react-helmet";
-
-import LoginForm from '../LoginForm';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+
+import LoginForm from '../LoginForm';
 import { authLogin } from '../../redux/ducks/auth';
 
 export function LoginPage(props) {
@@ -26,12 +26,12 @@ export function LoginPage(props) {
 	);
 }
 
-const dispatchers = {
-    authLogin,
-};
-
 LoginPage.propTypes = {
     authLogin: PropTypes.func.isRequired,
+};
+
+const dispatchers = {
+    authLogin,
 };
 
 export default connect(() => ({}), dispatchers)(LoginPage);

@@ -1,7 +1,8 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { Helmet } from "react-helmet";
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import SignupForm from '../SignupForm';
 import { signup } from '../../redux/ducks/auth';
@@ -22,7 +23,11 @@ export function SignupPage(props) {
 			</div>
 			<p>Already have an account? <Link to="/login">Log in here</Link></p>
 		</div>
-	)
+	);
+}
+
+SignupPage.propTypes = {
+	signup: PropTypes.func.isRequired,
 }
 
 const dispatchers = {
