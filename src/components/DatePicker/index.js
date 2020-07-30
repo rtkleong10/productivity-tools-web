@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import moment from 'moment';
 import 'react-day-picker/lib/style.css';
@@ -35,11 +36,17 @@ export default function DatePicker(props) {
 				onDayChange={onChange}
 				inputProps={{
 					required,
-					onKeyDown: e => { e.preventDefault()},
+					onKeyDown: e => { e.preventDefault() },
 				}}
 				{...rest}
 			/>
 			<FontAwesomeIcon icon={faCalendar} className="calendar-icon" />
 		</div>
 	)
+}
+
+DatePicker.propTypes = {
+	onChange: PropTypes.func.isRequired,
+	placeholder: PropTypes.string,
+	required: PropTypes.bool,
 }

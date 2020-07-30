@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import Select from '../Select';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
+import Select from '../Select';
 import { listColors, selectColors, selectColorsLoading, selectColorsError } from '../../redux/ducks/colors'; 
 
 const dot = color => ({
@@ -65,6 +66,14 @@ export function ColorSelect(props) {
 			{...props}
 			/>
 	);
+}
+
+ColorSelect.propTypes = {
+	colors: PropTypes.array.isRequired,
+	colorsLoading: PropTypes.bool.isRequired,
+	colorsError: PropTypes.object,
+
+	listColors: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import ReactSelect from 'react-select';
 
 import './index.scss';
@@ -41,4 +42,12 @@ export default function Select(props) {
 			}
 		</>
 	);
+}
+
+Select.propTypes = {
+	options: PropTypes.array.isRequired,
+	value: PropTypes.any,
+	onChange: PropTypes.func.isRequired,
+	disabled: PropTypes.bool,
+	required: PropTypes.bool,
 }
