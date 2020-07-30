@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
@@ -180,6 +181,20 @@ export class EventList extends Component {
 			</div>
 		);
 	}
+}
+
+EventList.propTypes = {
+	activityId: PropTypes.string.isRequired,
+
+	activityEvents: PropTypes.array.isRequired,
+	activityEventsLoading: PropTypes.bool.isRequired,
+	activityEventsError: PropTypes.object,
+
+	createActivityEvent: PropTypes.func.isRequired,
+	updateActivityEvent: PropTypes.func.isRequired,
+	deleteActivityEvent: PropTypes.func.isRequired,
+	listActivityEvents: PropTypes.func.isRequired,
+	retrieveActivityStatistics: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

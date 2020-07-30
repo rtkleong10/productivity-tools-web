@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import Loader from "../../components/Loader";
@@ -48,6 +49,22 @@ export function ActivityStatistics(props) {
 		</div>
 	)
 };
+
+ActivityStatistics.propTypes = {
+	className: PropTypes.string,
+	activityId: PropTypes.string.isRequired,
+
+	activityStatistics: PropTypes.shape({
+		average_frequency: PropTypes.number,
+		total_count: PropTypes.number.isRequired,
+		completed_count: PropTypes.number.isRequired,
+		skipped_count: PropTypes.number.isRequired,
+	}),
+	activityStatisticsLoading: PropTypes.bool.isRequired,
+	activityStatisticsError: PropTypes.object,
+
+	retrieveActivityStatistics: PropTypes.func.isRequired,
+}
 
 const mapStateToProps = state => ({
 	activityStatistics: selectActivityStatistics(state),

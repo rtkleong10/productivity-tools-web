@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -14,7 +15,7 @@ import { listColors, selectColors, selectColorsLoading, selectColorsError } from
 import { MODAL_TYPES } from '../../utils/constants';
 import empty from './empty.svg';
 
-export class ActivityListPage extends Component {
+export class ActivityList extends Component {
 	state = {
 		[MODAL_TYPES.CREATE]: false,
 	};
@@ -152,6 +153,20 @@ export class ActivityListPage extends Component {
 	}
 }
 
+ActivityList.propTypes = {
+	activities: PropTypes.array.isRequired,
+	activitiesLoading: PropTypes.bool.isRequired,
+	activitiesError: PropTypes.object,
+
+	colors: PropTypes.array.isRequired,
+	colorsLoading: PropTypes.bool.isRequired,
+	colorsError: PropTypes.object,
+
+	createActivity: PropTypes.func.isRequired,
+	listActivities: PropTypes.func.isRequired,
+	listColors: PropTypes.func.isRequired,
+}
+
 const mapStateToProps = state => ({
 	activities: selectActivities(state),
 	activitiesLoading: selectActivitiesLoading(state),
@@ -168,4 +183,4 @@ const dispatchers = {
 	listColors,
 };
 
-export default connect(mapStateToProps, dispatchers)(ActivityListPage);
+export default connect(mapStateToProps, dispatchers)(ActivityList);
