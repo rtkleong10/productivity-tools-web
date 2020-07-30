@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { Helmet } from "react-helmet";
@@ -125,6 +126,26 @@ export class CycleDetailPage extends Component {
 			</div>
 		);
 	}
+}
+
+CycleDetailPage.propTypes = {
+	match: PropTypes.shape({
+		params: PropTypes.shape({
+			cycleId: PropTypes.string.isRequired,
+		}).isRequired,
+	}).isRequired,
+	
+	timers: PropTypes.array.isRequired,
+	timersLoading: PropTypes.bool.isRequired,
+	timersError: PropTypes.object,
+
+	colors: PropTypes.array.isRequired,
+	colorsLoading: PropTypes.bool.isRequired,
+	colorsError: PropTypes.object,
+
+	retrieveCycle: PropTypes.func.isRequired,
+	listTimers: PropTypes.func.isRequired,
+	listColors: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({

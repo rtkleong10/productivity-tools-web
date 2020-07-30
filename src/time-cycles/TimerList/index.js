@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import FlipMove from 'react-flip-move';
@@ -162,6 +163,21 @@ export class TimerList extends Component {
 			</div>
 		);
 	}
+}
+
+TimerList.propTypes = {
+	currentTimer: PropTypes.object,
+	cycleId: PropTypes.string.isRequired,
+	timers: PropTypes.array.isRequired,
+	colors: PropTypes.array.isRequired,
+	isEditable: PropTypes.bool.isRequired,
+	setEditable: PropTypes.func.isRequired,
+
+	createTimer: PropTypes.func.isRequired,
+	updateTimer: PropTypes.func.isRequired,
+	deleteTimer: PropTypes.func.isRequired,
+	moveUpTimer: PropTypes.func.isRequired,
+	moveDownTimer: PropTypes.func.isRequired,
 }
 
 const dispatchers = {

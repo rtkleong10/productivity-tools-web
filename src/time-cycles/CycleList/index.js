@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -152,6 +153,17 @@ export class CycleList extends Component {
 			</div>
 		);
 	}
+}
+
+CycleList.propTypes = {
+	cycles: PropTypes.array.isRequired,
+	cyclesLoading: PropTypes.bool.isRequired,
+	cyclesError: PropTypes.object,
+
+	createCycle: PropTypes.func.isRequired,
+	updateCycle: PropTypes.func.isRequired,
+	deleteCycle: PropTypes.func.isRequired,
+	listCycles: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = state => ({
