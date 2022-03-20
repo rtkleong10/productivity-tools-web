@@ -1,29 +1,26 @@
 {
   "files": {
-    "main.css": "/productivity-tools-web/static/css/main.4aa33a5c.chunk.css",
-    "main.js": "/productivity-tools-web/static/js/main.bb945805.chunk.js",
-    "main.js.map": "/productivity-tools-web/static/js/main.bb945805.chunk.js.map",
-    "runtime-main.js": "/productivity-tools-web/static/js/runtime-main.d8d21f52.js",
-    "runtime-main.js.map": "/productivity-tools-web/static/js/runtime-main.d8d21f52.js.map",
-    "static/css/2.c6231af7.chunk.css": "/productivity-tools-web/static/css/2.c6231af7.chunk.css",
-    "static/js/2.eeb2cddd.chunk.js": "/productivity-tools-web/static/js/2.eeb2cddd.chunk.js",
-    "static/js/2.eeb2cddd.chunk.js.map": "/productivity-tools-web/static/js/2.eeb2cddd.chunk.js.map",
+    "main.css": "/productivity-tools-web/static/css/main.3dcbead2.css",
+    "main.js": "/productivity-tools-web/static/js/main.791c0d7d.js",
+    "static/media/AvenirNext-Regular-08.ttf": "/productivity-tools-web/static/media/AvenirNext-Regular-08.872961ef584256892a40.ttf",
+    "static/media/AvenirNext-Bold-01.ttf": "/productivity-tools-web/static/media/AvenirNext-Bold-01.39d7707a022e73d8571d.ttf",
+    "static/media/AvenirNext-Medium-06.ttf": "/productivity-tools-web/static/media/AvenirNext-Medium-06.588a49f7b67ee2dc6147.ttf",
+    "static/media/AvenirNext-DemiBold-03.ttf": "/productivity-tools-web/static/media/AvenirNext-DemiBold-03.cdeaa6c92c9329923d0f.ttf",
+    "static/media/Futura-Bold-03.ttf": "/productivity-tools-web/static/media/Futura-Bold-03.8246e3db756d37a61f78.ttf",
+    "static/media/Futura-Medium-01.ttf": "/productivity-tools-web/static/media/Futura-Medium-01.817831b084b59180eed2.ttf",
+    "static/media/futura-bold-03-webfont.woff": "/productivity-tools-web/static/media/futura-bold-03-webfont.ad35bdf159700fbbd007.woff",
+    "static/media/futura-medium-01-webfont.woff": "/productivity-tools-web/static/media/futura-medium-01-webfont.fe5541f328f3c346b868.woff",
+    "static/media/futura-bold-03-webfont.woff2": "/productivity-tools-web/static/media/futura-bold-03-webfont.5fc15f683daf2326e234.woff2",
+    "static/media/futura-medium-01-webfont.woff2": "/productivity-tools-web/static/media/futura-medium-01-webfont.ac31da85aa2af54a3d22.woff2",
+    "static/media/ding.mp3": "/productivity-tools-web/static/media/ding.8355bbfad6011b8a88f7.mp3",
+    "static/media/not-found.svg": "/productivity-tools-web/static/media/not-found.3655a68788b91bd75e31995243baed39.svg",
+    "static/media/empty.svg": "/productivity-tools-web/static/media/empty.bbffcb0187d6943378bb1fd45efd709e.svg",
     "index.html": "/productivity-tools-web/index.html",
-    "precache-manifest.06c83d52804496b5d2b6b239b81b63a2.js": "/productivity-tools-web/precache-manifest.06c83d52804496b5d2b6b239b81b63a2.js",
-    "service-worker.js": "/productivity-tools-web/service-worker.js",
-    "static/css/2.c6231af7.chunk.css.map": "/productivity-tools-web/static/css/2.c6231af7.chunk.css.map",
-    "static/css/main.4aa33a5c.chunk.css.map": "/productivity-tools-web/static/css/main.4aa33a5c.chunk.css.map",
-    "static/js/2.eeb2cddd.chunk.js.LICENSE.txt": "/productivity-tools-web/static/js/2.eeb2cddd.chunk.js.LICENSE.txt",
-    "static/media/index.scss": "/productivity-tools-web/static/media/futura-medium-01-webfont.87da75bf.woff",
-    "static/media/ding.mp3": "/productivity-tools-web/static/media/ding.d82fffe4.mp3",
-    "static/media/empty.svg": "/productivity-tools-web/static/media/empty.ca39146a.svg",
-    "static/media/not-found.svg": "/productivity-tools-web/static/media/not-found.b882863e.svg"
+    "main.3dcbead2.css.map": "/productivity-tools-web/static/css/main.3dcbead2.css.map",
+    "main.791c0d7d.js.map": "/productivity-tools-web/static/js/main.791c0d7d.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.d8d21f52.js",
-    "static/css/2.c6231af7.chunk.css",
-    "static/js/2.eeb2cddd.chunk.js",
-    "static/css/main.4aa33a5c.chunk.css",
-    "static/js/main.bb945805.chunk.js"
+    "static/css/main.3dcbead2.css",
+    "static/js/main.791c0d7d.js"
   ]
 }
