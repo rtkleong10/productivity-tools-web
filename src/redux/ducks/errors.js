@@ -8,7 +8,7 @@ const initialState = {
     errors: [],
 };
 
-export default function(state = initialState, action) {
+export default function errorsReducer(state = initialState, action) {
     switch (action.type) {
         case ERROR_DISPLAY:
             return {
