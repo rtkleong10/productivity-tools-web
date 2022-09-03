@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/productivity-tools-web/static/css/main.3dcbead2.css",
-    "main.js": "/productivity-tools-web/static/js/main.c651a98b.js",
+    "main.js": "/productivity-tools-web/static/js/main.e87935d2.js",
     "static/media/AvenirNext-Regular-08.ttf": "/productivity-tools-web/static/media/AvenirNext-Regular-08.872961ef584256892a40.ttf",
     "static/media/AvenirNext-Bold-01.ttf": "/productivity-tools-web/static/media/AvenirNext-Bold-01.39d7707a022e73d8571d.ttf",
     "static/media/AvenirNext-Medium-06.ttf": "/productivity-tools-web/static/media/AvenirNext-Medium-06.588a49f7b67ee2dc6147.ttf",
@@ -17,10 +17,10 @@
     "static/media/empty.svg": "/productivity-tools-web/static/media/empty.bbffcb0187d6943378bb1fd45efd709e.svg",
     "index.html": "/productivity-tools-web/index.html",
     "main.3dcbead2.css.map": "/productivity-tools-web/static/css/main.3dcbead2.css.map",
-    "main.c651a98b.js.map": "/productivity-tools-web/static/js/main.c651a98b.js.map"
+    "main.e87935d2.js.map": "/productivity-tools-web/static/js/main.e87935d2.js.map"
   },
   "entrypoints": [
     "static/css/main.3dcbead2.css",
-    "static/js/main.c651a98b.js"
+    "static/js/main.e87935d2.js"
   ]
 }
